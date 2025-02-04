@@ -8,16 +8,34 @@
 </head>
 
 <body>
-    <div class="nav-bar">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="popular.html">Popular</a></li>
-                <li id="brand-name"><a href="index.html">Ripped Offdit</a></li>
-                <li class="hamburger"></li>
-            </ul>
-        </nav>
+
+    <div class="off-screen-menu">
+        <ul>
+            <li><a href="#">placeholder 1</a></li>
+            <li><a href="#">placeholder 2</a></li>
+            <li><a href="#">placeholder 3</a></li>
+        </ul>
     </div>
+
+    <header id="site-header"><a href="index.html">Ripped Offdit</a></header>
+    <div class="nav-bar">
+        <div id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="popular.html">Popular</a>
+        </div>
+
+        <div id="nav-search">
+            <input id="nav-search-input" type="text" placeholder="&#128270; Search...">
+        </div>
+
+        <div class="ham-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script src="script/main.js"></script>
 </body>
 
 </html>
