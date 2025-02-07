@@ -1,0 +1,19 @@
+.post-area {
+    background-color: brown;
+    width: 50%;
+    height: 50%;
+}
+
+#right-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#create-post {
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid antiquewhite;
+    color: antiquewhite;
+}
