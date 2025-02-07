@@ -1,14 +1,18 @@
 const hamMenu = document.querySelector(".ham-menu");
 const offScreenMenu = document.querySelector(".off-screen-menu");
 
-hamMenu.addEventListener("click", () => {
+hamMenu.addEventListener("click", (event) => {
+    event.stopPropagation();
     hamMenu.classList.toggle("active");
     offScreenMenu.classList.toggle("active");
 });
 
-let testing = "";
-let testDiv = document.getElementById("test");
+offScreenMenu.addEventListener("click", (event) => { event.stopPropagation(); })
 
-testDiv.innerText = "Testar";
+document.addEventListener("click", () => {
+    if (offScreenMenu.classList.contains("active")) {
+        hamMenu.classList.toggle("active");
+        offScreenMenu.classList.toggle("active");
+    }
+});
 
-let main = document.getElementsByTagName("main");
