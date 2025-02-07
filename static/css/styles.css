@@ -2,6 +2,8 @@ body {
     background: rgb(37, 36, 36);
     color: antiquewhite;
     font-family: 'jetBrains Mono';
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -9,12 +11,8 @@ header {
     justify-content: center;
     align-items: center;
     background: rgb(31, 31, 31);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-
     height: 2rem;
+    position: sticky;
 }
 
 header a {
@@ -31,19 +29,15 @@ header a:active {
 }
 
 .nav-bar {
-    position: fixed;
-    top: 2rem;
-    left: 0;
-    right: 0;
     background: rgb(31, 31, 31);
     height: 3rem;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.nav-bar a {
+.nav-bar a,
+.off-screen-menu>ul a {
     text-decoration: none;
     cursor: pointer;
     margin: 0.25rem;
@@ -51,7 +45,10 @@ header a:active {
 
 .nav-bar a:visited,
 .nav-bar a:hover,
-.nav-bar a:active {
+.nav-bar a:active,
+.off-screen-menu>ul a:visited,
+.off-screen-menu>ula:hover,
+.off-screen-menu>ul a:active {
     color: #faebd7;
     text-decoration: none;
 }
@@ -64,24 +61,24 @@ header a:active {
 }
 
 .off-screen-menu {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(37, 36, 36);
     height: 100vh;
     width: 100%;
-    max-width: 450px;
+    max-width: 20rem;
     position: fixed;
     top: 0;
-    right: -450px;
+    right: -30rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     transition: .3s ease;
+    z-index: 999;
 }
 
 .off-screen-menu ul {
-
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -91,13 +88,14 @@ header a:active {
     right: 0;
 }
 
-
 .ham-menu {
     height: 50px;
     width: 40px;
     margin-left: auto;
     position: relative;
     margin: 0.25rem;
+    z-index: 1000;
+    /* Added highest z-index to stay clickable */
 }
 
 .ham-menu span {
