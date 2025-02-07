@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    gap: 0.5rem;
 }
 
 #create-post {
@@ -16,4 +17,8 @@
     background-color: rgb(31, 31, 31);
     border: 1px solid antiquewhite;
     color: antiquewhite;
+}
+
+.post {
+    background: red;
 }
