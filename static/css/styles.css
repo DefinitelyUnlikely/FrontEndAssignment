@@ -12,26 +12,25 @@ body {
     flex-direction: column;
 }
 
+#right-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    gap: 0.5rem;
+}
+
 #create-post {
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid antiquewhite;
+    color: antiquewhite;
     height: 1.5rem;
 }
 
 #create-post:hover {
     color: black;
     border: 1px solid black;
-}
-
-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.5rem;
-    background-color: rgb(31, 31, 31);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 header {
@@ -151,9 +150,24 @@ header {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-main {}
+main {
+    left: 3rem;
+    right: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.post-area {
-    background-color: red;
-    width: 80%;
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.5rem;
+    background-color: rgb(31, 31, 31);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
