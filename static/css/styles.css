@@ -51,6 +51,7 @@ footer {
 
 .nav-bar a,
 .off-screen-menu>ul a {
+    color: antiquewhite;
     text-decoration: none;
     cursor: pointer;
     margin: 0.25rem;
