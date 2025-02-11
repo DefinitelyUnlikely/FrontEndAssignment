@@ -6,26 +6,19 @@ body {
     padding: 0;
 }
 
-header {
+.wrapper {
+    height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgb(31, 31, 31);
-    height: 2rem;
-    position: sticky;
+    flex-direction: column;
 }
 
-header a {
-    color: antiquewhite;
-    text-decoration: none;
-    cursor: pointer;
+#create-post {
+    height: 1.5rem;
 }
 
-header a:visited,
-header a:hover,
-header a:active {
-    color: antiquewhite;
-    text-decoration: none;
+#create-post:hover {
+    color: black;
+    border: 1px solid black;
 }
 
 footer {
@@ -41,9 +34,13 @@ footer {
     right: 0;
 }
 
+header {
+    height: 4rem;
+}
+
 .nav-bar {
     background: rgb(31, 31, 31);
-    height: 3rem;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,12 +63,13 @@ footer {
     text-decoration: none;
 }
 
-
 #nav-search input {
     background-color: black;
     border: 0;
+    border-radius: 10px;
     outline: 0;
     color: #faebd7;
+    height: 1.5rem;
 }
 
 .off-screen-menu {
@@ -113,6 +111,8 @@ footer {
     /* Added highest z-index to stay clickable */
 }
 
+.ham-menu:hover {}
+
 .ham-menu span {
     height: 5px;
     width: 100%;
@@ -149,4 +149,11 @@ footer {
 .ham-menu.active span:nth-child(3) {
     top: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+main {}
+
+.post-area {
+    background-color: red;
+    width: 80%;
 }
