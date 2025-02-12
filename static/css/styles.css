@@ -65,7 +65,7 @@ header {
 #nav-search input {
     background-color: black;
     border: 0;
-    border-radius: 10px;
+    border-radius: 0.3rem;
     outline: 0;
     color: #faebd7;
     height: 1.5rem;
@@ -151,6 +151,7 @@ header {
 }
 
 main {
+    flex: 1;
     left: 3rem;
     right: 3rem;
     display: flex;
@@ -166,8 +167,4 @@ footer {
     align-items: center;
     font-size: 0.5rem;
     background-color: rgb(31, 31, 31);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
