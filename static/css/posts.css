@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    background: rgb(36, 36, 36);
     height: 100%;
     width: 90%;
     border-radius: 0.3rem;
 }
 
 .post-area>article {
-    background-color: #000000;
+    background: rgb(36, 36, 36);
     height: 100%;
 }
