@@ -1,3 +1,9 @@
+import { renderPosts } from "./component/posts.js";
+
+function main() {
+    renderPosts();
+}
+
 const hamMenu = document.querySelector(".ham-menu");
 const offScreenMenu = document.querySelector(".off-screen-menu");
 
@@ -16,3 +22,4 @@ document.addEventListener("click", () => {
     }
 });
 
+main();

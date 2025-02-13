@@ -11,10 +11,14 @@
 <body>
     <div class="wrapper">
         <div class="off-screen-menu">
+            <div class="hidden-top-bar"></div>
+            <div class="off-screen-span">
+                <span>Currently posting as user: </span><span id="selected-user">None </span>
+            </div>
             <ul>
-                <li><a href="#">placeholder 1</a></li>
-                <li><a href="#">placeholder 2</a></li>
-                <li><a href="#">placeholder 3</a></li>
+                <li><a href="#">Change User</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Logout</a></li>
             </ul>
         </div>
 
@@ -41,9 +45,6 @@
         </header>
         <main>
             <div class="post-area">
-                <article>
-                    This is placeholder text
-                </article>
             </div>
         </main>
 
@@ -56,7 +57,8 @@
 
     </div>
 
-    <script src="script/main.js"></script>
+    <script type="module" src="script/main.js"></script>
+    <script type="module" src="script/component/posts.js"></script>
 </body>
 
 </html>

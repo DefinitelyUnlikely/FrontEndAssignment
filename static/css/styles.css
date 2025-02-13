@@ -83,11 +83,18 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
     font-size: 2rem;
     transition: .3s ease;
     z-index: 999;
+}
+
+.hidden-top-bar {
+    height: 3rem;
+}
+
+.off-screen-span {
+    flex: 1;
 }
 
 .off-screen-menu ul {

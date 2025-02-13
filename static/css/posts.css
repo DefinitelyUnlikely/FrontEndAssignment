@@ -5,7 +5,8 @@
     background: rgb(36, 36, 36);
     height: 100%;
     width: 90%;
-    border-radius: 0.3rem;
+    border-left: 2px solid rgb(31, 31, 31);
+    border-right: 2px solid rgb(31, 31, 31);
 }
 
 .post-area>article {
