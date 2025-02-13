@@ -4,6 +4,8 @@ function main() {
     renderPosts();
 }
 
+
+// Hamburger menu JavaScript
 const hamMenu = document.querySelector(".ham-menu");
 const offScreenMenu = document.querySelector(".off-screen-menu");
 
@@ -21,5 +23,8 @@ document.addEventListener("click", () => {
         offScreenMenu.classList.toggle("active");
     }
 });
+
+// Search box JavaScript
+// Nothing here yet
 
 main();
