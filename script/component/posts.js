@@ -4,9 +4,12 @@ export function renderPosts() {
 
     // Just for testing. This will be replaced with me importing data through the DummyJSON Api
     // And looping through it.
-    const post = document.createElement("article");
-    postArea.append(post);
-    post.innerText = "Testing";
+    for (let i = 0; i < 50; i++) {
+        const post = document.createElement("article");
+        postArea.append(post);
+        post.innerText = "Testing";
+    }
+
 
 }
 

@@ -1,7 +1,9 @@
 .post-area {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
     background: rgb(36, 36, 36);
     height: 100%;
     width: 90%;

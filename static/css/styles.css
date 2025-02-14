@@ -1,4 +1,5 @@
 body {
+    overflow: hidden;
     background: rgb(36, 36, 36);
     color: antiquewhite;
     font-family: 'jetBrains Mono';
