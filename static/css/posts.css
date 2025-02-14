@@ -12,9 +12,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(36, 36, 36);
-    height: 99%;
-    width: 100%;
+    background: rgb(40, 40, 40);
+    max-height: 20rem;
+    height: 95%;
+    width: 70%;
     border: 2px solid rgb(31, 31, 31);
     border-radius: 0.3rem;
 }

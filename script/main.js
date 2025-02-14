@@ -2,6 +2,7 @@ import { renderPosts } from "./component/posts.js";
 
 function main() {
     renderPosts();
+
 }
 
 
