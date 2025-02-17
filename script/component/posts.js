@@ -7,7 +7,13 @@ export function renderPosts() {
     for (let i = 0; i < 50; i++) {
         const post = document.createElement("article");
         postArea.append(post);
-        post.innerText = "Testing";
+
+        const title = document.createElement("h4");
+        title.innerText = "Title " + i;
+        post.append(title);
+
+        const hLine = document.createElement("hr");
+        post.append(hLine)
     }
 
 

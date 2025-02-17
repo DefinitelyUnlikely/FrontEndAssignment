@@ -36,6 +36,8 @@ body {
 
 header {
     height: 4rem;
+    flex-shrink: 0;
+    z-index: 100;
 }
 
 .nav-bar {
@@ -65,6 +67,8 @@ header {
 
 #nav-search input {
     background-color: black;
+    background-image: url(../../static/images/magnifying-glass-svgrepo-com.svg);
+    background-repeat: no-repeat;
     border: 0;
     border-radius: 0.3rem;
     outline: 0;
@@ -158,13 +162,14 @@ header {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+
 main {
     flex: 1;
-    left: 3rem;
-    right: 3rem;
+    min-height: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
 
 
@@ -175,4 +180,5 @@ footer {
     align-items: center;
     font-size: 0.5rem;
     background-color: rgb(31, 31, 31);
+    flex-shrink: 0;
 }
