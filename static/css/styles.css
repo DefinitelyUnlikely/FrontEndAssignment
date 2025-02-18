@@ -172,6 +172,20 @@ main {
     position: relative;
 }
 
+#create-post-area {
+    background-color: #faebd7;
+    position: fixed;
+    top: 2rem;
+    left: 15%;
+    right: 15%;
+    bottom: 2rem;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
 
 footer {
     display: flex;
