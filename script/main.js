@@ -37,7 +37,6 @@ createButton.addEventListener("click", (event) => {
     createArea.classList.remove("hidden");
 
     createArea.addEventListener("click", (event) => { event.stopPropagation(); })
-
     document.addEventListener("click", () => { createArea.classList.add("hidden"); });
 })
 

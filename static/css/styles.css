@@ -175,10 +175,10 @@ main {
 #create-post-area {
     background-color: #faebd7;
     position: fixed;
-    top: 2rem;
-    left: 15%;
-    right: 15%;
-    bottom: 2rem;
+    top: 1rem;
+    left: 10%;
+    right: 10%;
+    bottom: 1rem;
     z-index: 1000;
 }
 
