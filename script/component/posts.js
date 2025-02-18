@@ -2,19 +2,12 @@ export function renderPosts() {
     // Function to render posts on the main pages
     const postArea = document.getElementsByClassName("post-area")[0]
 
-    // Just for testing. This will be replaced with me importing data through the DummyJSON Api
-    // And looping through it.
-    for (let i = 0; i < 50; i++) {
-        const post = document.createElement("article");
-        postArea.append(post);
+    // Fetch Dummy data from dummyJSON.com
+    let posts = [];
 
-        const title = document.createElement("h4");
-        title.innerText = "Title " + i;
-        post.append(title);
-
-        const hLine = document.createElement("hr");
-        post.append(hLine)
-    }
+    fetch('https://dummyjson.com/posts')
+        .then(res => posts = res.json())
+        .then(console.log(posts))
 
 
 }
