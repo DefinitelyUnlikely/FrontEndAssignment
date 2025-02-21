@@ -1,5 +1,5 @@
-function getCommentsByPost(postId) { }
+export function getCommentsByPost(postId) { }
 
-function getSingleComment(commentId) {
+export function getSingleComment(commentId) {
 
 }

@@ -12,6 +12,8 @@ export function renderPosts() {
 
 }
 
+export function renderPopularPosts() { }
+
 export function renderSinglePost(postArea) {
     // function that will render a single post, when selected.
 }
