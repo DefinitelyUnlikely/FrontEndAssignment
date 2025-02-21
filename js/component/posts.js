@@ -15,8 +15,3 @@ export function renderPosts() {
 export function renderSinglePost(postArea) {
     // function that will render a single post, when selected.
 }
-
-function getAllPosts() { }
-
-
-function getSinglePost(postId) { }
