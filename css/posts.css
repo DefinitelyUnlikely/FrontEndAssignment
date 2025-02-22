@@ -33,6 +33,12 @@
 
 .post-area>article>p:nth-of-type(1) {
     font-size: 0.6rem;
+    max-height: 1rem;
+    max-width: 10rem;
+}
+
+.post-area>article>p:nth-of-type(1):hover {
+    cursor: pointer;
 }
 
 .post-area>article>span {}

@@ -25,8 +25,13 @@ export async function renderAllPosts() {
 
         title.innerText = post.title;
 
+        // Doing a single fetch at the moment.
+        // Getting all users, to be able to tell which user
+        // posted a post, can be done due to the small amount of 
+        // users in the dummy data. But how would that scale?
         let user = await getSingleUser(post.userId);
         postedBy.innerText = "Posted by " + user.username;
+        postedBy.addEventListener("click", () => { console.log("Placeholder") })
 
         body.innerText = post.body.slice(0, 60) + "..."
         upvote.innerText = "Like";
