@@ -11,6 +11,7 @@ export async function renderAllPosts() {
         const renderedPost = document.createElement("article");
 
         const title = document.createElement("h3");
+        const tagArea = document.createElement("span")
         const body = document.createElement("p");
 
         const bottomDiv = document.createElement("div");
@@ -27,9 +28,17 @@ export async function renderAllPosts() {
         share.innerText = "Share";
 
         postArea.append(renderedPost)
+
         renderedPost.append(title);
+        renderedPost.append(tagArea);
         renderedPost.append(body);
         renderedPost.append(bottomDiv);
+
+        for (let t of post.tags) {
+            const tag = document.createElement("button");
+            tagArea.append(tag);
+            tag.innerText = t
+        }
 
         bottomDiv.append(leftBottom);
         bottomDiv.append(rightBottom);

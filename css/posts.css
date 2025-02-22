@@ -26,6 +26,25 @@
     flex-shrink: 0;
 }
 
+.post-area>article>span {}
+
+.post-area>article>span>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 90%;
+}
+
+.post-area>article>span>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.post-area>article>span>button:active {
+    background-color: orangered;
+}
+
 .post-area>article>p {
     flex-grow: 1;
     width: 80%;
