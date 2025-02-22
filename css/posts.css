@@ -26,6 +26,12 @@
     flex-shrink: 0;
 }
 
+.post-area>article>p:nth-of-type(1) {
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: center;
+}
+
 .post-area>article>span {}
 
 .post-area>article>span>button {

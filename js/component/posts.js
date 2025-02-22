@@ -1,4 +1,5 @@
 import { getAllPosts } from "../API/posts.js";
+import { getSingleUser } from "../API/users.js";
 
 export async function renderAllPosts() {
     // Function to render posts on the main pages
@@ -11,6 +12,7 @@ export async function renderAllPosts() {
         const renderedPost = document.createElement("article");
 
         const title = document.createElement("h3");
+        const postedBy = document.createElement("p");
         const tagArea = document.createElement("span")
         const body = document.createElement("p");
 
@@ -22,7 +24,11 @@ export async function renderAllPosts() {
         const share = document.createElement("button");
 
         title.innerText = post.title;
-        body.innerText = post.body.slice(0, 79) + "..."
+
+        let user = await getSingleUser(post.userId);
+        postedBy.innerText = "Posted by " + user.username;
+
+        body.innerText = post.body.slice(0, 60) + "..."
         upvote.innerText = "Like";
         downvote.innerText = "Dislike";
         share.innerText = "Share";
@@ -31,6 +37,7 @@ export async function renderAllPosts() {
 
         renderedPost.append(title);
         renderedPost.append(tagArea);
+        renderedPost.append(postedBy);
         renderedPost.append(body);
         renderedPost.append(bottomDiv);
 
