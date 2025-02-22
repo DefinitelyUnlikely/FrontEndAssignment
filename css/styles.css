@@ -211,7 +211,6 @@ footer {
     align-items: center;
     font-size: 0.5rem;
     background-color: rgb(31, 31, 31);
-    flex-shrink: 0;
     height: 4rem;
 }
 
