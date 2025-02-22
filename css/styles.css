@@ -1,3 +1,5 @@
+/* For styles pertaining to the html at large or that I want to be persistent across the document */
+
 body {
     overflow: hidden;
     background: rgb(36, 36, 36);
@@ -88,6 +90,8 @@ header {
     height: 1.5rem;
 }
 
+
+/* OffScreen menu and hamburger menu styling */
 .off-screen-menu {
     border-left: 1px solid black;
     background-color: rgb(37, 36, 36);
@@ -122,6 +126,10 @@ header {
 
 .off-screen-menu.active {
     right: 0;
+}
+
+.off-screen-menu>ul>li:hover {
+    cursor: pointer;
 }
 
 .ham-menu {

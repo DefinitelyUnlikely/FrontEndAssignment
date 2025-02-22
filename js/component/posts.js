@@ -1,16 +1,18 @@
-export function renderPosts() {
+import { getAllPosts } from "../API/posts.js";
+
+export async function renderAllPosts() {
     // Function to render posts on the main pages
     const postArea = document.getElementsByClassName("post-area")[0]
 
     // Fetch Dummy data from dummyJSON.com
-    let posts = [];
+    let postArray = await getAllPosts();
 
-    fetch('https://dummyjson.com/posts')
-        .then(res => posts = res.json())
-        .then(console.log(posts))
-
-
+    for (let post of postArray.posts) {
+        console.log(post)
+    }
 }
+
+export function renderHomePosts() { }
 
 export function renderPopularPosts() { }
 
