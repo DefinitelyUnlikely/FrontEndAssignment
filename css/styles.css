@@ -36,6 +36,10 @@ body {
     border: none;
 }
 
+#create-post:hover {
+    background-color: rgb(37, 37, 37);
+}
+
 #create-post-area {
     background-color: rgb(36, 36, 36);
     border: 2px solid rgb(31, 31, 31);

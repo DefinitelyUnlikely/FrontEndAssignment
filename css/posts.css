@@ -56,3 +56,11 @@
     color: antiquewhite;
     height: 90%;
 }
+
+.post-area>article>div>div>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.post-area>article>div>div>button:active {
+    background-color: orangered;
+}
