@@ -35,6 +35,12 @@ export async function renderAllPosts() {
         postedBy.innerHTML = '<a href="/users?id=' + post.userId + '">Posted by ' + user.username + '</a>';
         postedBy.addEventListener("click", () => { console.log("Placeholder") })
 
+        for (let t of post.tags) {
+            const tag = document.createElement("button");
+            tagArea.append(tag);
+            tag.innerText = t
+        }
+
         // const bottomDiv = document.createElement("div");
         // const leftBottom = document.createElement("div");
         // const rightBottom = document.createElement("div");
@@ -62,19 +68,13 @@ export async function renderAllPosts() {
         amountOfComments.innerText = totalComments + commentsOrComment;
         // Add sidebar functionallity
 
-        renderedPost.addEventListener("mouseover", (event) => {
+        renderedPost.addEventListener("mouseover", () => {
             sidebar.removeAttribute("id", "hidden-sidebar");
         });
 
-        postArea.addEventListener("mouseleave", (event) => {
+        postArea.addEventListener("mouseleave", () => {
             sidebar.setAttribute("id", "hidden-sidebar");
         })
-
-        for (let t of post.tags) {
-            const tag = document.createElement("button");
-            tagArea.append(tag);
-            tag.innerText = t
-        }
 
     }
 }
