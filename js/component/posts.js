@@ -68,11 +68,13 @@ export async function renderAllPosts() {
         amountOfComments.innerText = totalComments + commentsOrComment;
         // Add sidebar functionallity
 
-        renderedPost.addEventListener("mouseover", () => {
+        renderedPost.addEventListener("mouseover", (event) => {
+            event.stopPropagation();
             sidebar.removeAttribute("id", "hidden-sidebar");
         });
 
-        postArea.addEventListener("mouseleave", () => {
+        postAndSidebar.addEventListener("mouseleave", (event) => {
+            event.stopPropagation();
             sidebar.setAttribute("id", "hidden-sidebar");
         })
 

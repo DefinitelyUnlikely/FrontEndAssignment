@@ -36,6 +36,8 @@
 .post-area>div>article>p {
     display: flex;
     justify-content: center;
+    flex-grow: 1;
+    width: 80%;
 }
 
 .post-area>div>article>p:nth-of-type(1) {
@@ -45,6 +47,12 @@
 }
 
 .post-area>div>article>p:nth-of-type(1):hover {
+    cursor: pointer;
+}
+
+.post-area>div>article>p>a {
+    color: antiquewhite;
+    text-decoration: none;
     cursor: pointer;
 }
 
@@ -63,17 +71,6 @@
 
 .post-area>div>article>span>button:active {
     background-color: orangered;
-}
-
-.post-area>div>article>p {
-    flex-grow: 1;
-    width: 80%;
-}
-
-.post-area>div>article>div {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
 }
 
 .post-area>div>article>div>div {
@@ -139,5 +136,3 @@
 .post-area>div>div>div:active {
     color: orangered;
 }
-
-.post-side-pull {}
