@@ -1,5 +1,7 @@
-export function getCommentsByPost(postId) { }
+export async function getCommentsByPost(postId) {
+    return (await fetch('https://dummyjson.com/posts/' + postId + '/comments')).json();
+}
 
-export function getSingleComment(commentId) {
+export async function getSingleComment(commentId) {
 
 }

@@ -9,6 +9,8 @@ export async function renderAllPosts() {
     let postArray = await getAllPosts();
 
     for (let post of postArray.posts) {
+        const postURL = '/posts?id=' + post.id;
+
         const renderedPost = document.createElement("article");
 
         const title = document.createElement("h3");
@@ -16,12 +18,16 @@ export async function renderAllPosts() {
         const tagArea = document.createElement("span")
         const body = document.createElement("p");
 
-        const bottomDiv = document.createElement("div");
-        const leftBottom = document.createElement("div");
-        const rightBottom = document.createElement("div");
+        // const bottomDiv = document.createElement("div");
+        // const leftBottom = document.createElement("div");
+        // const rightBottom = document.createElement("div");
+
+        const sidebar = document.createElement("div")
+
         const upvote = document.createElement("button");
         const downvote = document.createElement("button");
         const share = document.createElement("button");
+        const amountOfComments = document.createElement("button");
 
         title.innerText = post.title;
 
@@ -30,7 +36,8 @@ export async function renderAllPosts() {
         // posted a post, can be done due to the small amount of 
         // users in the dummy data. But how would that scale?
         let user = await getSingleUser(post.userId);
-        postedBy.innerText = "Posted by " + user.username;
+        postedBy.innerHTML = '<a href="/users?id=' + post.userId
+            + '">Posted by ' + user.username + '</a>';
         postedBy.addEventListener("click", () => { console.log("Placeholder") })
 
         body.innerText = post.body.slice(0, 60) + "..."
@@ -44,19 +51,12 @@ export async function renderAllPosts() {
         renderedPost.append(tagArea);
         renderedPost.append(postedBy);
         renderedPost.append(body);
-        renderedPost.append(bottomDiv);
 
         for (let t of post.tags) {
             const tag = document.createElement("button");
             tagArea.append(tag);
             tag.innerText = t
         }
-
-        bottomDiv.append(leftBottom);
-        bottomDiv.append(rightBottom);
-        leftBottom.append(upvote);
-        leftBottom.append(downvote);
-        rightBottom.append(share);
 
     }
 }

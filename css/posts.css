@@ -19,8 +19,8 @@
     flex-direction: column;
     align-items: center;
     background: rgb(40, 40, 40);
-    min-height: 20rem;
-    width: 70%;
+    min-height: 15rem;
+    width: 50%;
     border: 2px solid rgb(31, 31, 31);
     border-radius: 0.3rem;
     flex-shrink: 0;
