@@ -13,15 +13,28 @@ export async function renderAllPosts() {
 
         const renderedPost = document.createElement("article");
 
+        // Main post body
         const title = document.createElement("h3");
         const postedBy = document.createElement("p");
         const tagArea = document.createElement("span")
         const body = document.createElement("p");
 
+        renderedPost.append(title);
+        renderedPost.append(tagArea);
+        renderedPost.append(postedBy);
+        renderedPost.append(body);
+
+        let user = await getSingleUser(post.userId);
+        title.innerText = post.title;
+        body.innerText = post.body.slice(0, 60) + "..."
+        postedBy.innerHTML = '<a href="/users?id=' + post.userId + '">Posted by ' + user.username + '</a>';
+        postedBy.addEventListener("click", () => { console.log("Placeholder") })
+
         // const bottomDiv = document.createElement("div");
         // const leftBottom = document.createElement("div");
         // const rightBottom = document.createElement("div");
 
+        // sidebar
         const sidebar = document.createElement("div")
 
         const upvote = document.createElement("button");
@@ -29,28 +42,15 @@ export async function renderAllPosts() {
         const share = document.createElement("button");
         const amountOfComments = document.createElement("button");
 
-        title.innerText = post.title;
+        renderedPost.addEventListener("mouseover", () => {
 
-        // Doing a single fetch at the moment.
-        // Getting all users, to be able to tell which user
-        // posted a post, can be done due to the small amount of 
-        // users in the dummy data. But how would that scale?
-        let user = await getSingleUser(post.userId);
-        postedBy.innerHTML = '<a href="/users?id=' + post.userId
-            + '">Posted by ' + user.username + '</a>';
-        postedBy.addEventListener("click", () => { console.log("Placeholder") })
+        });
 
-        body.innerText = post.body.slice(0, 60) + "..."
         upvote.innerText = "Like";
         downvote.innerText = "Dislike";
         share.innerText = "Share";
 
         postArea.append(renderedPost)
-
-        renderedPost.append(title);
-        renderedPost.append(tagArea);
-        renderedPost.append(postedBy);
-        renderedPost.append(body);
 
         for (let t of post.tags) {
             const tag = document.createElement("button");
