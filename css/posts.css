@@ -16,7 +16,8 @@
 
 .post-area>div {
     display: flex;
-    width: 80%;
+    width: 60%;
+    max-width: 650px;
 }
 
 /* Main post body */

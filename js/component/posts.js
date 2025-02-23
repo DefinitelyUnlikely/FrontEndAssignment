@@ -85,6 +85,6 @@ export function renderHomePosts() { }
 
 export function renderPopularPosts() { }
 
-export function renderSinglePost(postArea) {
+export function renderSinglePost(postId) {
     // function that will render a single post, when selected.
 }
