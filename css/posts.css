@@ -14,36 +14,43 @@
     scrollbar-width: none;
 }
 
-.post-area>article {
+.post-area>div {
+    display: flex;
+    width: 80%;
+}
+
+/* Main post body */
+.post-area>div>article {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: rgb(40, 40, 40);
     min-height: 15rem;
-    width: 50%;
+    width: 100%;
     border: 2px solid rgb(31, 31, 31);
     border-radius: 0.3rem;
     flex-shrink: 0;
+    z-index: 100;
 }
 
-.post-area>article>p {
+.post-area>div>article>p {
     display: flex;
     justify-content: center;
 }
 
-.post-area>article>p:nth-of-type(1) {
+.post-area>div>article>p:nth-of-type(1) {
     font-size: 0.6rem;
     max-height: 1rem;
     max-width: 10rem;
 }
 
-.post-area>article>p:nth-of-type(1):hover {
+.post-area>div>article>p:nth-of-type(1):hover {
     cursor: pointer;
 }
 
-.post-area>article>span {}
+.post-area>div>article>span {}
 
-.post-area>article>span>button {
+.post-area>div>article>span>button {
     cursor: pointer;
     border-radius: 1rem;
     background-color: rgb(31, 31, 31);
@@ -52,37 +59,37 @@
     height: 90%;
 }
 
-.post-area>article>span>button:hover {
+.post-area>div>article>span>button:hover {
     background-color: rgb(37, 37, 37);
 }
 
-.post-area>article>span>button:active {
+.post-area>div>article>span>button:active {
     background-color: orangered;
 }
 
-.post-area>article>p {
+.post-area>div>article>p {
     flex-grow: 1;
     width: 80%;
 }
 
-.post-area>article>div {
+.post-area>div>article>div {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.post-area>article>div>div {
+.post-area>div>article>div>div {
     display: flex;
     min-height: 2rem;
     width: 100%;
     margin: 0.2rem;
 }
 
-.post-area>article>div>div:nth-child(2) {
+.post-area>div>article>div>div:nth-child(2) {
     justify-content: end;
 }
 
-.post-area>article>div>div>button {
+.post-area>div>article>div>div>button {
     cursor: pointer;
     border-radius: 1rem;
     background-color: rgb(31, 31, 31);
@@ -91,10 +98,45 @@
     height: 90%;
 }
 
-.post-area>article>div>div>button:hover {
+.post-area>div>article>div>div>button:hover {
     background-color: rgb(37, 37, 37);
 }
 
-.post-area>article>div>div>button:active {
+.post-area>div>article>div>div>button:active {
     background-color: orangered;
 }
+
+/* Sidebar */
+
+#hidden-sidebar {
+    display: none;
+}
+
+.post-area>div>div {
+    display: flex;
+    transition: .3s ease;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.post-area>div>div>div {
+    display: flex;
+    border: 1px solid black;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    transition: 0.8s ease;
+    position: relative;
+    right: 0;
+}
+
+.post-area>div>div>div:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+.post-area>div>div>div:active {
+    color: orangered;
+}
+
+.post-side-pull {}

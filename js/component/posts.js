@@ -1,5 +1,6 @@
 import { getAllPosts } from "../API/posts.js";
 import { getSingleUser } from "../API/users.js";
+import { getCommentsByPost } from "../API/comments.js";
 
 export async function renderAllPosts() {
     // Function to render posts on the main pages
@@ -9,9 +10,13 @@ export async function renderAllPosts() {
     let postArray = await getAllPosts();
 
     for (let post of postArray.posts) {
+        const postAndSidebar = document.createElement("div");
+        postArea.append(postAndSidebar);
+
         const postURL = '/posts?id=' + post.id;
 
         const renderedPost = document.createElement("article");
+        postAndSidebar.append(renderedPost)
 
         // Main post body
         const title = document.createElement("h3");
@@ -36,21 +41,34 @@ export async function renderAllPosts() {
 
         // sidebar
         const sidebar = document.createElement("div")
+        sidebar.setAttribute("id", "hidden-sidebar");
+        postAndSidebar.append(sidebar);
 
-        const upvote = document.createElement("button");
-        const downvote = document.createElement("button");
-        const share = document.createElement("button");
-        const amountOfComments = document.createElement("button");
+        const upvote = document.createElement("div");
+        const downvote = document.createElement("div");
+        const share = document.createElement("div");
+        const amountOfComments = document.createElement("div");
 
-        renderedPost.addEventListener("mouseover", () => {
-
-        });
+        sidebar.append(amountOfComments);
+        sidebar.append(upvote);
+        sidebar.append(downvote);
+        sidebar.append(share);
 
         upvote.innerText = "Like";
         downvote.innerText = "Dislike";
         share.innerText = "Share";
+        let totalComments = (await getCommentsByPost(post.id)).total;
+        let commentsOrComment = totalComments != 1 ? " comments" : " comment";
+        amountOfComments.innerText = totalComments + commentsOrComment;
+        // Add sidebar functionallity
 
-        postArea.append(renderedPost)
+        renderedPost.addEventListener("mouseover", (event) => {
+            sidebar.removeAttribute("id", "hidden-sidebar");
+        });
+
+        postArea.addEventListener("mouseleave", (event) => {
+            sidebar.setAttribute("id", "hidden-sidebar");
+        })
 
         for (let t of post.tags) {
             const tag = document.createElement("button");
