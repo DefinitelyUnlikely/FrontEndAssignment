@@ -33,7 +33,7 @@ export async function hiddenPostSidebar(post) {
 
     amountOfComments.addEventListener("click", (event) => {
         event.stopPropagation();
-        renderSinglePost(post.id, true)
+        renderSinglePost(post.id, post, true)
     });
 
 

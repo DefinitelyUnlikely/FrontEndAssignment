@@ -58,7 +58,7 @@ export async function renderAllPosts() {
         // Adding ability to get single post
         renderedPost.addEventListener("click", (event) => {
             event.stopPropagation();
-            renderSinglePost(post.id);
+            renderSinglePost(post.id, post);
         });
 
     }
@@ -68,21 +68,27 @@ export async function renderHomePosts() { }
 
 export async function renderPopularPosts() { }
 
-export async function renderSinglePost(postId, showComments = false) {
+export async function renderSinglePost(postId, post, showComments = false) {
     // function that will render a single post, when selected.
     const singlePostRender = document.createElement("div");
     singlePostRender.classList.add("single-post");
 
+    console.log(post);
+
     const title = document.createElement("h2");
     const postedBy = document.createElement("p");
     const tagArea = document.createElement("span")
-    const body = document.createElement("p");
+    const postBody = document.createElement("p");
     const commentArea = document.createElement("div");
+
+    title.innerText = post.title;
+    postedBy.innerHTML = '<a href="/users?id=' + post.userId + '">Posted by ' + (await getSingleUser(post.userId)).username + '</a>';
+    postBody.innerText = post.body;
 
     singlePostRender.append(title);
     singlePostRender.append(postedBy);
     singlePostRender.append(tagArea);
-    singlePostRender.append(body);
+    singlePostRender.append(postBody);
     singlePostRender.append(commentArea);
 
     document.body.append(singlePostRender);
@@ -125,7 +131,9 @@ export async function renderSinglePost(postId, showComments = false) {
         showCommentsText.addEventListener("click", (event) => {
             event.stopPropagation();
             renderComments();
-        })
+        }, { once: true })
+
+        commentArea.append(showCommentsText);
     }
 
     if (showComments) {
