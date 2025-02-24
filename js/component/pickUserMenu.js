@@ -57,11 +57,10 @@ export async function pickUserMenu() {
     })
 
     // To keep track of what we rendered the last page
-    let lastPageLimit = 25;
     let lastPageSkip = 0;
 
     nextPage.addEventListener("click", async () => {
-        lastPageSkip += lastPageLimit;
+        lastPageSkip += 25;
         renderUsers((await getUsersPagination(25, lastPageSkip)).users);
     });
 
@@ -69,7 +68,7 @@ export async function pickUserMenu() {
         if (lastPageSkip == 0) {
             return;
         }
-        lastPageSkip -= lastPageLimit;
+        lastPageSkip -= 25;
         renderUsers((await getUsersPagination(25, lastPageSkip)).users);
     });
 
