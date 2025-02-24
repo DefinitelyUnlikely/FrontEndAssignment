@@ -19,6 +19,7 @@ export function scrollIndicators(container) {
     }
 
     container.addEventListener("scroll", updateArrows);
-
     window.addEventListener("resize", updateArrows);
+
+    updateArrows();
 }

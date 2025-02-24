@@ -31,7 +31,7 @@ export async function renderAllPosts() {
         let user = await getSingleUser(post.userId);
         title.innerText = post.title;
         body.innerText = post.body.slice(0, 60) + "..."
-        postedBy.innerHTML = '<a href="/users?id=' + post.userId + '">Posted by ' + user.username + '</a>';
+        postedBy.innerHTML = `<a href="/users?id=${post.userId}">Posted by ${user.username}</a>`;
         postedBy.addEventListener("click", () => { console.log("Placeholder") })
 
         for (let t of post.tags) {
@@ -92,7 +92,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     commentArea.classList.add("comment-area");
 
     title.innerText = post.title;
-    postedBy.innerHTML = '<a href="/users?id=' + post.userId + '">Posted by ' + (await getSingleUser(post.userId)).username + '</a>';
+    postedBy.innerHTML = `<a href="/users?id=${post.userId}">Posted by ${(await getSingleUser(post.userId)).username}</a>`;
     postBody.innerText = post.body;
 
     singlePostRender.append(title);

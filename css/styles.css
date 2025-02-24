@@ -221,14 +221,3 @@ footer {
 footer>p {
     margin: 0;
 }
-
-
-.scroll-arrow {
-    z-index: 1001;
-    position: fixed;
-    top: 0;
-}
-
-.scroll-arrow>img {
-    height: 3rem;
-}

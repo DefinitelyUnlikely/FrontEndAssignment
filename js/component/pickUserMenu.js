@@ -3,6 +3,11 @@ import { scrollIndicators } from "./scrollIndiciators.js";
 
 export async function pickUserMenu() {
 
+    // To prevent the function being called again and adding another window - if one already exists.
+    if (document.querySelector(".pickUserWindow")) {
+        return;
+    }
+
     let users = await getAllUsers();
 
     const pickUserModal = document.createElement("div");
@@ -11,19 +16,31 @@ export async function pickUserMenu() {
     const pickUserWindow = document.createElement("div");
     pickUserWindow.classList.add("pickUserWindow");
 
-    if (document.querySelector(".pickUserWindow")) {
-        return;
-    }
+    const usersDiv = document.createElement("div");
+    const pickPageDiv = document.createElement("div");
 
     document.body.append(pickUserModal);
     pickUserModal.append(pickUserWindow);
+
+    pickUserWindow.append(usersDiv);
+    pickUserWindow.append(pickPageDiv);
+
+    const nextPage = document.createElement("span");
+    const lastPage = document.createElement("span");
+
+    pickPageDiv.append(lastPage);
+    pickPageDiv.append(nextPage);
+
+    nextPage.innerText = "Next >"
+    lastPage.innerText = "< Last"
+
     for (let user of users.users) {
         const userPara = document.createElement("p");
         const userSpan = document.createElement("span");
         userSpan.innerText = user.username;
         userSpan.style.cursor = "pointer";
         userPara.appendChild(userSpan);
-        pickUserWindow.append(userPara);
+        usersDiv.append(userPara);
     }
 
     pickUserWindow.addEventListener("click", (event) => event.stopPropagation());
@@ -33,7 +50,5 @@ export async function pickUserMenu() {
         pickUserModal.remove();
         pickUserWindow.remove();
     })
-
-    scrollIndicators(pickUserWindow);
 
 }
