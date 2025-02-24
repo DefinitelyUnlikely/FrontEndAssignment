@@ -14,8 +14,6 @@ export async function renderAllPosts() {
         const postAndSidebar = document.createElement("div");
         postArea.append(postAndSidebar);
 
-        const postURL = '/posts?id=' + post.id;
-
         const renderedPost = document.createElement("article");
         postAndSidebar.append(renderedPost)
 
@@ -57,13 +55,80 @@ export async function renderAllPosts() {
             sidebar.setAttribute("id", "hidden-sidebar");
         })
 
+        // Adding ability to get single post
+        renderedPost.addEventListener("click", (event) => {
+            event.stopPropagation();
+            renderSinglePost(post.id);
+        });
+
     }
 }
 
-export function renderHomePosts() { }
+export async function renderHomePosts() { }
 
-export function renderPopularPosts() { }
+export async function renderPopularPosts() { }
 
-export function renderSinglePost(postId) {
+export async function renderSinglePost(postId, showComments = false) {
     // function that will render a single post, when selected.
+    const singlePostRender = document.createElement("div");
+    singlePostRender.classList.add("single-post");
+
+    const title = document.createElement("h2");
+    const postedBy = document.createElement("p");
+    const tagArea = document.createElement("span")
+    const body = document.createElement("p");
+    const commentArea = document.createElement("div");
+
+    singlePostRender.append(title);
+    singlePostRender.append(postedBy);
+    singlePostRender.append(tagArea);
+    singlePostRender.append(body);
+    singlePostRender.append(commentArea);
+
+    document.body.append(singlePostRender);
+
+    const renderComments = async () => {
+        for (let comment of (await getCommentsByPost(postId)).comments) {
+            console.log(comment);
+            const singleComment = document.createElement("div");
+            singleComment.classList.add("single-comment");
+            commentArea.append(singleComment);
+
+            const commentPostedBy = document.createElement("p");
+            const lineOne = document.createElement("hr");
+            const commentBody = document.createElement("p");
+            const lineTwo = document.createElement("hr");
+            const commentLikes = document.createElement("p");
+
+            commentPostedBy.innerText = (await getSingleUser(comment.user.id)).username;
+            commentBody.innerText = comment.body;
+            commentLikes.innerText = comment.likes + (comment.likes == 1 ? " Like" : " Likes");
+            console.log(commentLikes);
+
+            singleComment.append(commentPostedBy);
+            singleComment.append(lineOne);
+            singleComment.append(commentBody);
+            singleComment.append(lineTwo);
+            singleComment.append(commentLikes);
+        }
+    };
+
+    singlePostRender.addEventListener("click", (event) => event.stopPropagation());
+    document.body.addEventListener("click", (event) => {
+        event.stopPropagation();
+        singlePostRender.remove();
+    });
+
+    if (!showComments) {
+        const showCommentsText = document.createElement("p");
+        showCommentsText.innerText = "Show comments...";
+        showCommentsText.addEventListener("click", (event) => {
+            event.stopPropagation();
+            renderComments();
+        })
+    }
+
+    if (showComments) {
+        renderComments();
+    }
 }

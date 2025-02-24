@@ -1,10 +1,13 @@
 import { getCommentsByPost } from "../API/comments.js";
+import { renderSinglePost } from "./posts.js";
 
 
 
 export async function hiddenPostSidebar(post) {
     const sidebar = document.createElement("div")
     sidebar.setAttribute("id", "hidden-sidebar");
+
+    const postURL = '/posts?id=' + post.id;
 
     const upvote = document.createElement("div");
     const downvote = document.createElement("div");
@@ -18,10 +21,21 @@ export async function hiddenPostSidebar(post) {
 
     upvote.innerText = "Like";
     downvote.innerText = "Dislike";
-    share.innerText = "Share";
+    share.innerHTML = "Share";
     let totalComments = (await getCommentsByPost(post.id)).total;
     let commentsOrComment = totalComments != 1 ? " comments" : " comment";
     amountOfComments.innerText = totalComments + commentsOrComment;
+
+    // Event listeners
+    upvote.addEventListener("click", () => { });
+    downvote.addEventListener("click", () => { });
+    share.addEventListener("click", () => { });
+
+    amountOfComments.addEventListener("click", (event) => {
+        event.stopPropagation();
+        renderSinglePost(post.id, true)
+    });
+
 
     return sidebar;
 }

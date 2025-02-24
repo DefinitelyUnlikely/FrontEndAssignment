@@ -138,3 +138,34 @@
 .post-area>div>div>div:active {
     color: orangered;
 }
+
+
+/* Render a single post CSS */
+.single-post {
+    display: flex;
+    background-color: red;
+    position: fixed;
+    left: 15%;
+    right: 15%;
+    top: 4rem;
+    bottom: 4rem;
+    z-index: 1000;
+}
+
+.single-post>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    background-color: yellow;
+}
+
+.single-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    gap: 0.2rem;
+}
