@@ -1,4 +1,4 @@
-import { getAllPosts } from "../API/posts.js";
+import { getAllPosts, getSinglePost } from "../API/posts.js";
 import { getSingleUser } from "../API/users.js";
 import { getCommentsByPost } from "../API/comments.js";
 import { hiddenPostSidebar } from "./postSidebar.js";
@@ -68,12 +68,21 @@ export async function renderHomePosts() { }
 
 export async function renderPopularPosts() { }
 
-export async function renderSinglePost(postId, post, showComments = false) {
-    // function that will render a single post, when selected.
+/**
+ * Render single post as a overlay window.
+ * @param {*} postId - Id of the post to render.
+ * @param {*} post - Optional. If post already in memory, one can send it as an argument to prevent an API/localStorage call.
+ * @param {*} showComments - Optional. If turned true, will show all comments on a post when rendering.
+ * Otherwise, add a show comment clickable paragraph.
+ */
+export async function renderSinglePost(postId, post = null, showComments = false) {
+
+    if (post == null) {
+        post = await getSinglePost(postId);
+    }
+
     const singlePostRender = document.createElement("div");
     singlePostRender.classList.add("single-post");
-
-    console.log(post);
 
     const title = document.createElement("h2");
     const postedBy = document.createElement("p");
@@ -157,8 +166,6 @@ export async function renderSinglePost(postId, post, showComments = false) {
     const likes = document.createElement("button");
     const dislikes = document.createElement("button");
     const addComment = document.createElement("button");
-
-    console.log(post.reactions.likes)
 
     likes.innerText = post.reactions.likes + (post.reactions.likes == 1 ? " Like" : " Likes")
     dislikes.innerText = (post.reactions).dislikes + (post.reactions.dislikes == 1 ? " Dislike" : " Dislikes")

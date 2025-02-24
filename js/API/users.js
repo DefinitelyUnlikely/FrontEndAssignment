@@ -3,10 +3,7 @@
  * @param {*} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
 export async function getAllUsers(alwaysUpdate = false) {
-
-    fetch('https://dummyjson.com/users?limit=0')
-        .then(res => res.json())
-        .then(console.log);
+    return (await fetch('https://dummyjson.com/users?limit=0')).json();
 }
 
 /**
