@@ -191,6 +191,9 @@
 
 .single-comment>hr {
     width: 93%;
+    height: 0.3rem;
+    background-color: rgb(41, 41, 41);
+    border: none;
 }
 
 .bottom-div {

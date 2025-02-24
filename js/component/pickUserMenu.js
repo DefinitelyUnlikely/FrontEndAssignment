@@ -1,4 +1,4 @@
-import { getAllUsers } from "../API/users.js";
+import { getAllUsers, getUsersPagination } from "../API/users.js";
 import { scrollIndicators } from "./scrollIndiciators.js";
 
 export async function pickUserMenu() {
@@ -8,7 +8,7 @@ export async function pickUserMenu() {
         return;
     }
 
-    let users = await getAllUsers();
+    let users = await getUsersPagination();
 
     const pickUserModal = document.createElement("div");
     pickUserModal.classList.add("pickUserModal");
@@ -45,10 +45,12 @@ export async function pickUserMenu() {
 
     pickUserWindow.addEventListener("click", (event) => event.stopPropagation());
 
-    pickUserModal.addEventListener("click", (event) => {
+    pickUserModal.addEventListener("click", event => {
         event.stopPropagation();
         pickUserModal.remove();
         pickUserWindow.remove();
+        // We need to do this, or the hamburger menus "click outside to close" wont't work.
+        pickUserModal.removeEventListener();
     })
 
 }

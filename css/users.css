@@ -30,7 +30,8 @@
     flex-direction: column;
     flex-shrink: 1;
     overflow-y: auto;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(31, 31, 31) rgb(41, 41, 41);
 }
 
 .pickUserWindow>div:nth-child(2) {
