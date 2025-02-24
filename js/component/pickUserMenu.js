@@ -8,7 +8,7 @@ export async function pickUserMenu() {
         return;
     }
 
-    let users = await getUsersPagination();
+    let usersJSON = await getUsersPagination();
 
     const pickUserModal = document.createElement("div");
     pickUserModal.classList.add("pickUserModal");
@@ -34,14 +34,19 @@ export async function pickUserMenu() {
     nextPage.innerText = "Next >"
     lastPage.innerText = "< Last"
 
-    for (let user of users.users) {
-        const userPara = document.createElement("p");
-        const userSpan = document.createElement("span");
-        userSpan.innerText = user.username;
-        userSpan.style.cursor = "pointer";
-        userPara.appendChild(userSpan);
-        usersDiv.append(userPara);
+    function renderUsers(users) {
+        usersDiv.innerHTML = "";
+        for (let user of users) {
+            const userPara = document.createElement("p");
+            const userSpan = document.createElement("span");
+            userSpan.innerText = user.username;
+            userSpan.style.cursor = "pointer";
+            userPara.appendChild(userSpan);
+            usersDiv.append(userPara);
+        }
     }
+
+    renderUsers(usersJSON.users);
 
     pickUserWindow.addEventListener("click", (event) => event.stopPropagation());
 
@@ -49,8 +54,23 @@ export async function pickUserMenu() {
         event.stopPropagation();
         pickUserModal.remove();
         pickUserWindow.remove();
-        // We need to do this, or the hamburger menus "click outside to close" wont't work.
-        pickUserModal.removeEventListener();
     })
+
+    // To keep track of what we rendered the last page
+    let lastPageLimit = 25;
+    let lastPageSkip = 0;
+
+    nextPage.addEventListener("click", async () => {
+        lastPageSkip += lastPageLimit;
+        renderUsers((await getUsersPagination(25, lastPageSkip)).users);
+    });
+
+    lastPage.addEventListener("click", async () => {
+        if (lastPageSkip == 0) {
+            return;
+        }
+        lastPageSkip -= lastPageLimit;
+        renderUsers((await getUsersPagination(25, lastPageSkip)).users);
+    });
 
 }
