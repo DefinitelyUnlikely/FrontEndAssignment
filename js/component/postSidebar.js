@@ -19,8 +19,8 @@ export async function hiddenPostSidebar(post) {
     sidebar.append(downvote);
     sidebar.append(share);
 
-    upvote.innerText = "Like";
-    downvote.innerText = "Dislike";
+    upvote.innerText = post.reactions.likes + (post.reactions.likes == 1 ? " Like" : " Likes")
+    downvote.innerText = post.reactions.dislikes + (post.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
     share.innerHTML = "Share";
     let totalComments = (await getCommentsByPost(post.id)).total;
     let commentsOrComment = totalComments != 1 ? " comments" : " comment";

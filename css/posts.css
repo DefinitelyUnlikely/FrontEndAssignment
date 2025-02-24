@@ -144,22 +144,35 @@
 .single-post {
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: rgb(31, 31, 31);
+    justify-content: center;
+    align-items: center;
     position: fixed;
     left: 15%;
     right: 15%;
-    top: 4rem;
-    bottom: 4rem;
+    top: 4.5rem;
+    bottom: 4.5rem;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0.3rem;
     z-index: 1000;
 }
 
-.single-post>div {
+.single-post>h2 {
+    margin: 0.5rem;
+}
+
+.single-post>p {
+    margin: 0.5rem;
+}
+
+.comment-area {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.2rem;
-    background-color: rgb(0, 0, 0);
+    width: 100%;
+    background-color: rgb(31, 31, 31);
     z-index: 1000;
 }
 
@@ -168,11 +181,37 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0.3rem;
+    background-color: rgb(31, 31, 31);
     gap: 0.2rem;
     z-index: 1000;
+    width: 98%;
 }
 
 .single-comment>hr {
     width: 93%;
+}
+
+.bottom-div {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+
+.bottom-div>div>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 90%;
+}
+
+.bottom-div>div>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.bottom-div>div>button:active {
+    background-color: orangered;
 }

@@ -80,6 +80,7 @@ export async function renderSinglePost(postId, post, showComments = false) {
     const tagArea = document.createElement("span")
     const postBody = document.createElement("p");
     const commentArea = document.createElement("div");
+    commentArea.classList.add("comment-area");
 
     title.innerText = post.title;
     postedBy.innerHTML = '<a href="/users?id=' + post.userId + '">Posted by ' + (await getSingleUser(post.userId)).username + '</a>';
@@ -130,6 +131,7 @@ export async function renderSinglePost(postId, post, showComments = false) {
         showCommentsText.innerText = "Show comments...";
         showCommentsText.addEventListener("click", (event) => {
             event.stopPropagation();
+            showCommentsText.innerText = "Comments";
             renderComments();
         }, { once: true })
 
@@ -139,4 +141,30 @@ export async function renderSinglePost(postId, post, showComments = false) {
     if (showComments) {
         renderComments();
     }
+
+    // Bottom div with likes, dislikes and the button for adding a comment.
+    const bottomDiv = document.createElement("div");
+    bottomDiv.classList.add("bottom-div");
+
+    singlePostRender.append(bottomDiv);
+
+    const leftBottom = document.createElement("div");
+    const rightBottom = document.createElement("div");
+
+    bottomDiv.append(leftBottom)
+    bottomDiv.append(rightBottom)
+
+    const likes = document.createElement("button");
+    const dislikes = document.createElement("button");
+    const addComment = document.createElement("button");
+
+    console.log(post.reactions.likes)
+
+    likes.innerText = post.reactions.likes + (post.reactions.likes == 1 ? " Like" : " Likes")
+    dislikes.innerText = (post.reactions).dislikes + (post.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
+    addComment.innerText = "Comment"
+
+    leftBottom.append(likes);
+    leftBottom.append(dislikes);
+    rightBottom.append(addComment);
 }
