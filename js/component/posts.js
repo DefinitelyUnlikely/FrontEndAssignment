@@ -1,6 +1,7 @@
 import { getAllPosts } from "../API/posts.js";
 import { getSingleUser } from "../API/users.js";
 import { getCommentsByPost } from "../API/comments.js";
+import { hiddenPostSidebar } from "./postSidebar.js";
 
 export async function renderAllPosts() {
     // Function to render posts on the main pages
@@ -41,33 +42,11 @@ export async function renderAllPosts() {
             tag.innerText = t
         }
 
-        // const bottomDiv = document.createElement("div");
-        // const leftBottom = document.createElement("div");
-        // const rightBottom = document.createElement("div");
-
         // sidebar
-        const sidebar = document.createElement("div")
-        sidebar.setAttribute("id", "hidden-sidebar");
+        const sidebar = await hiddenPostSidebar(post);
         postAndSidebar.append(sidebar);
 
-        const upvote = document.createElement("div");
-        const downvote = document.createElement("div");
-        const share = document.createElement("div");
-        const amountOfComments = document.createElement("div");
-
-        sidebar.append(amountOfComments);
-        sidebar.append(upvote);
-        sidebar.append(downvote);
-        sidebar.append(share);
-
-        upvote.innerText = "Like";
-        downvote.innerText = "Dislike";
-        share.innerText = "Share";
-        let totalComments = (await getCommentsByPost(post.id)).total;
-        let commentsOrComment = totalComments != 1 ? " comments" : " comment";
-        amountOfComments.innerText = totalComments + commentsOrComment;
         // Add sidebar functionallity
-
         renderedPost.addEventListener("mouseover", (event) => {
             event.stopPropagation();
             sidebar.removeAttribute("id", "hidden-sidebar");

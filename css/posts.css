@@ -18,6 +18,7 @@
     display: flex;
     width: 60%;
     max-width: 650px;
+    cursor: pointer;
 }
 
 /* Main post body */
@@ -32,6 +33,7 @@
     border-radius: 0.3rem;
     flex-shrink: 0;
     z-index: 100;
+
 }
 
 .post-area>div>article>p {
@@ -53,7 +55,6 @@
 
 .post-area>div>article>p>a {
     color: antiquewhite;
-    text-decoration: none;
     cursor: pointer;
 }
 

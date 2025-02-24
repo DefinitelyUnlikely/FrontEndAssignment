@@ -2,10 +2,9 @@ import { getCommentsByPost } from "../API/comments.js";
 
 
 
-export async function addPostSidebar(elementToAppendTo, post, mouseoverElement, mouseleaveElement) {
+export async function hiddenPostSidebar(post) {
     const sidebar = document.createElement("div")
     sidebar.setAttribute("id", "hidden-sidebar");
-    elementToAppendTo.append(sidebar);
 
     const upvote = document.createElement("div");
     const downvote = document.createElement("div");
@@ -24,12 +23,5 @@ export async function addPostSidebar(elementToAppendTo, post, mouseoverElement, 
     let commentsOrComment = totalComments != 1 ? " comments" : " comment";
     amountOfComments.innerText = totalComments + commentsOrComment;
 
-    mouseoverElement.addEventListener("mouseover", () => {
-        sidebar.removeAttribute("id", "hidden-sidebar");
-    });
-
-    mouseleaveElement.addEventListener("mouseleave", () => {
-        sidebar.setAttribute("id", "hidden-sidebar");
-    })
-
+    return sidebar;
 }
