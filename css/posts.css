@@ -154,6 +154,9 @@
     bottom: 4.5rem;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 0.3rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(31, 31, 31) rgb(41, 41, 41);
     z-index: 1000;
 }
 

@@ -130,10 +130,13 @@ export async function renderSinglePost(postId, post = null, showComments = false
     };
 
     singlePostRender.addEventListener("click", (event) => event.stopPropagation());
-    document.body.addEventListener("click", (event) => {
+
+    function removeSinlePost(event) {
         event.stopPropagation();
         singlePostRender.remove();
-    });
+        document.body.removeEventListener("click", removeSinlePost);
+    }
+    document.body.addEventListener("click", removeSinlePost);
 
     if (!showComments) {
         const showCommentsText = document.createElement("p");
