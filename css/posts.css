@@ -250,3 +250,34 @@
     outline: 0;
     color: #faebd7;
 }
+
+.unhidden-flex>div {
+    border: 3px solid rgb(31, 31, 31);
+    border-radius: 0.5rem;
+    height: 10rem;
+    width: 88%;
+    margin: 0.5rem;
+    padding: 1%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(31, 31, 31) rgb(41, 41, 41);
+}
+
+.unhidden-flex>div>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 1.5rem;
+    margin: 0.1rem;
+}
+
+.unhidden-flex>div>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.unhidden-flex>div>button.picked {
+    transition: 0.2s ease;
+    background-color: orangered;
+}

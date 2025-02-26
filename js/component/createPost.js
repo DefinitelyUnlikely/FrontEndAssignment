@@ -1,3 +1,5 @@
+import { getAllPostTagsList } from "../API/posts.js";
+
 export function createPostButton() {
     const createButton = document.getElementById("create-post");
     const createArea = document.getElementById("create-post-area");
@@ -16,7 +18,7 @@ export function createPostButton() {
     })
 }
 
-export function renderCreatePostArea() {
+export async function renderCreatePostArea() {
     const createArea = document.getElementById("create-post-area");
 
     if (createArea.innerHTML.trim() != "") {
@@ -49,5 +51,21 @@ export function renderCreatePostArea() {
 
     createArea.append(bodyLabel);
     createArea.append(bodyInput);
+
     // Tags
+    const tagAreaLabel = document.createElement("span");
+    tagAreaLabel.innerText = "Choose tags"
+    createArea.append(tagAreaLabel)
+    const tagArea = document.createElement("div");
+    const tags = await getAllPostTagsList();
+    for (let tag of tags) {
+        const tagButton = document.createElement("button");
+        tagButton.innerText = tag;
+        tagArea.append(tagButton);
+
+        tagButton.addEventListener("click", () => {
+            tagButton.classList.toggle("picked");
+        })
+    }
+    createArea.append(tagArea);
 }
