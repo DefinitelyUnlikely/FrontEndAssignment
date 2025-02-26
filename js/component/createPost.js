@@ -68,4 +68,9 @@ export async function renderCreatePostArea() {
         })
     }
     createArea.append(tagArea);
+
+    // Submit button and logic
+    const submitButton = document.createElement("button");
+    submitButton.innerText = "Submit";
+    createArea.append(submitButton);
 }

@@ -231,6 +231,10 @@
     gap: 0.5rem;
 }
 
+.unhidden-flex>label {
+    flex-shrink: 1;
+}
+
 #title-input {
     height: 1.5rem;
     width: 90%;
@@ -263,6 +267,23 @@
     scrollbar-color: rgb(31, 31, 31) rgb(41, 41, 41);
 }
 
+/* Submit button */
+.unhidden-flex>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 3rem;
+    width: 70%;
+    margin: 0.5rem;
+}
+
+.unhidden-flex>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+/* tag 'buttons' */
 .unhidden-flex>div>button {
     cursor: pointer;
     border-radius: 1rem;

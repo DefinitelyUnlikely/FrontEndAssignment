@@ -9,6 +9,10 @@ body {
     padding: 0;
 }
 
+button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
 .wrapper {
     height: 100vh;
     display: flex;
@@ -45,10 +49,9 @@ body {
     border: 2px solid rgb(31, 31, 31);
     border-radius: 3rem;
     position: fixed;
-    top: 1rem;
+    top: 10rem;
     left: 10%;
     right: 10%;
-    bottom: 1rem;
     z-index: 901;
 }
 
