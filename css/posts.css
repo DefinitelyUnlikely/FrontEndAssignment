@@ -72,6 +72,7 @@
 }
 
 .post-area>div>article>span>button:active {
+    transition: 0.2s ease;
     background-color: orangered;
 }
 
@@ -100,6 +101,7 @@
 }
 
 .post-area>div>article>div>div>button:active {
+    transition: 0.2s ease;
     background-color: orangered;
 }
 
@@ -136,6 +138,7 @@
 }
 
 .post-area>div>div>div:active {
+    transition: 0.2s ease;
     color: orangered;
 }
 
@@ -219,6 +222,7 @@
 }
 
 .bottom-div>div>button:active {
+    transition: 0.2s ease;
     background-color: orangered;
 }
 
@@ -281,6 +285,11 @@
 
 .unhidden-flex>button:hover {
     background-color: rgb(37, 37, 37);
+}
+
+.unhidden-flex>button:active {
+    transition: 0.2s ease;
+    background-color: orangered;
 }
 
 /* tag 'buttons' */
