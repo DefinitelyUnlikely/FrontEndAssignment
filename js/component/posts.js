@@ -2,6 +2,7 @@ import { getAllPosts, getSinglePost } from "../API/posts.js";
 import { getSingleUser } from "../API/users.js";
 import { getCommentsByPost } from "../API/comments.js";
 import { hiddenPostSidebar } from "./postSidebar.js";
+import { renderPostCommentBox } from "./createComment.js";
 
 export async function renderAllPosts() {
     // Function to render posts on the main pages
@@ -177,4 +178,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     leftBottom.append(likes);
     leftBottom.append(dislikes);
     rightBottom.append(addComment);
+
+    // Add logic for comment button: 
+    addComment.addEventListener("click", renderPostCommentBox)
 }

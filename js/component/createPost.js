@@ -73,4 +73,6 @@ export async function renderCreatePostArea() {
     const submitButton = document.createElement("button");
     submitButton.innerText = "Submit";
     createArea.append(submitButton);
+
+    submitButton.addEventListener("click", () => { })
 }

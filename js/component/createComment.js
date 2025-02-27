@@ -1,3 +1,3 @@
-export async function renderPostComment() {
+export async function renderPostCommentBox() {
 
 }
