@@ -106,7 +106,6 @@ export async function renderSinglePost(postId, post = null, showComments = false
 
     const renderComments = async () => {
         for (let comment of (await getCommentsByPost(postId)).comments) {
-            console.log(comment);
             const singleComment = document.createElement("div");
             singleComment.classList.add("single-comment");
             commentArea.append(singleComment);
@@ -120,7 +119,6 @@ export async function renderSinglePost(postId, post = null, showComments = false
             commentPostedBy.innerText = (await getSingleUser(comment.user.id)).username;
             commentBody.innerText = comment.body;
             commentLikes.innerText = comment.likes + (comment.likes == 1 ? " Like" : " Likes");
-            console.log(commentLikes);
 
             singleComment.append(commentPostedBy);
             singleComment.append(lineOne);
@@ -180,5 +178,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     rightBottom.append(addComment);
 
     // Add logic for comment button: 
-    addComment.addEventListener("click", renderPostCommentBox)
+    addComment.addEventListener("click", () => {
+        renderPostCommentBox(singlePostRender, post)
+    }, { once: true })
 }

@@ -1,5 +1,9 @@
 let currentSelectedUser = null;
 
+export function getCurrentlySelectedUser() {
+    return currentSelectedUser;
+}
+
 export function updateCurrentSelectedUser(user) {
 
     if (user == null) {

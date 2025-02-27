@@ -311,3 +311,39 @@
     transition: 0.2s ease;
     background-color: orangered;
 }
+
+/*  Comment box */
+#comment-text {
+    height: 10rem;
+    width: 90%;
+    background-color: black;
+    border: 0;
+    border-radius: 0.3rem;
+    outline: 0;
+    color: #faebd7;
+    margin: 0.5rem;
+}
+
+#comment-label {
+    padding-top: 2rem;
+    margin-top: 2rem;
+}
+
+#comment-submit {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 1.5rem;
+    margin: 0.1rem;
+}
+
+#comment-submitbutton:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+#comment-submit:active {
+    transition: 0.2s ease;
+    background-color: orangered;
+}
