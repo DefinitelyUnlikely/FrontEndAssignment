@@ -7,6 +7,9 @@ import { getLocalCommentData } from "../services/localStorage.js";
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
 export async function getCommentsByPost(postId, alwaysUpdate = false) {
+    if (alwaysUpdate) {
+        return (await fetch('https://dummyjson.com/comments/post/' + postId)).json();
+    }
     return (await fetch('https://dummyjson.com/comments/post/' + postId)).json();
 }
 
@@ -17,5 +20,9 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
  * @returns 
  */
 export async function getSingleComment(commentId, alwaysUpdate = false) {
-    return (await fetch('https://dummyjson.com/comments/' + commentId)).json()
+    if (alwaysUpdate) {
+        return (await fetch('https://dummyjson.com/comments/' + commentId)).json();
+    }
+
+    return (await fetch('https://dummyjson.com/comments/' + commentId)).json();
 }

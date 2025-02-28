@@ -7,6 +7,9 @@ import { getLocalPostData } from "../services/localStorage.js";
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
 export async function getAllPosts(alwaysUpdate = false) {
+    if (!alwaysUpdate) {
+        return;
+    }
     return (await fetch('https://dummyjson.com/posts?limit=20')).json();
 }
 
@@ -17,6 +20,9 @@ export async function getAllPosts(alwaysUpdate = false) {
  * @returns a json containing information for a single post.
  */
 export async function getSinglePost(postId, alwaysUpdate = false) {
+    if (alwaysUpdate) {
+        return (await fetch('https://dummyjson.com/posts/' + postId)).json();
+    }
     return (await fetch('https://dummyjson.com/posts/' + postId)).json();
 }
 
@@ -26,5 +32,8 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
  * @returns A list of tags.
  */
 export async function getAllPostTagsList(alwaysUpdate = false) {
+    if (alwaysUpdate) {
+        return (await fetch('https://dummyjson.com/posts/tag-list')).json();
+    }
     return (await fetch('https://dummyjson.com/posts/tag-list')).json();
 }
