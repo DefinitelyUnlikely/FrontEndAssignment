@@ -1,6 +1,10 @@
 import { getAllPostTagsList } from "../API/posts.js";
+import { getLocalPostData } from "../services/localStorage.js";
+import { getAllPosts } from "../API/posts.js";
 
-export function createPostButton() {
+export async function createPostButton() {
+    let posts = await getAllPosts();
+    console.log(getLocalPostData());
     const createButton = document.getElementById("create-post");
     const createArea = document.getElementById("create-post-area");
     createButton.addEventListener("click", (event) => {
