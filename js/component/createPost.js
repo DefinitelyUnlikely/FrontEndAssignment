@@ -1,6 +1,5 @@
-import { getAllPostTagsList } from "../API/posts.js";
+import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
 import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
-import { getAllPosts } from "../API/posts.js";
 
 export async function createPostButton() {
     const createButton = document.getElementById("create-post");

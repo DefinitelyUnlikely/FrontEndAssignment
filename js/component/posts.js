@@ -1,6 +1,6 @@
-import { getAllPosts, getSinglePost } from "../API/posts.js";
-import { getSingleUser } from "../API/users.js";
-import { getCommentsByPost } from "../API/comments.js";
+import { getAllPosts, getSinglePost } from "../data/posts.js";
+import { getSingleUser } from "../data/users.js";
+import { getCommentsByPost } from "../data/comments.js";
 import { hiddenPostSidebar } from "./postSidebar.js";
 import { renderPostCommentBox } from "./createComment.js";
 

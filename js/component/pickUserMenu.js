@@ -1,4 +1,4 @@
-import { getAllUsers, getUsersPagination } from "../API/users.js";
+import { getAllUsers, getUsersPagination } from "../data/users.js";
 import { scrollIndicators } from "./scrollIndiciators.js";
 import { updateCurrentSelectedUser } from "../constants.js";
 

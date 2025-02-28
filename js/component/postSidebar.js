@@ -1,4 +1,4 @@
-import { getCommentsByPost } from "../API/comments.js";
+import { getCommentsByPost } from "../data/comments.js";
 import { renderSinglePost } from "./posts.js";
 
 

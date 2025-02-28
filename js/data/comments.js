@@ -1,9 +1,12 @@
+import { fetchCommentsByPost, fetchSingleComment } from "../API/comments.js";
+import { getLocalCommentData } from "../services/localStorage.js";
+
 /**
  * get all comments on a specific post, by post id, available to the API/localStorage.
  * @param {number} postId - id of post to et comments for.
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
-export async function fetchCommentsByPost(postId, alwaysUpdate = false) {
+export async function getCommentsByPost(postId, alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/comments/post/' + postId)).json();
 }
 
@@ -13,6 +16,6 @@ export async function fetchCommentsByPost(postId, alwaysUpdate = false) {
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  * @returns 
  */
-export async function fetchSingleComment(commentId, alwaysUpdate = false) {
+export async function getSingleComment(commentId, alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/comments/' + commentId)).json()
 }

@@ -1,9 +1,12 @@
+import { fetchAllPosts, fetchSinglePost } from "../API/posts.js";
+import { getLocalPostData } from "../services/localStorage.js";
+
 /**
  * get all posts available to the API/localStorage.
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
-export async function fetchAllPosts(alwaysUpdate = false) {
+export async function getAllPosts(alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/posts?limit=20')).json();
 }
 
@@ -13,7 +16,7 @@ export async function fetchAllPosts(alwaysUpdate = false) {
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  * @returns a json containing information for a single post.
  */
-export async function fetchSinglePost(postId, alwaysUpdate = false) {
+export async function getSinglePost(postId, alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/posts/' + postId)).json();
 }
 
@@ -22,6 +25,6 @@ export async function fetchSinglePost(postId, alwaysUpdate = false) {
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  * @returns A list of tags.
  */
-export async function fetchAllPostTagsList(alwaysUpdate = false) {
+export async function getAllPostTagsList(alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/posts/tag-list')).json();
 }

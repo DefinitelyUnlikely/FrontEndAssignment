@@ -1,8 +1,11 @@
+import { fetchAllUsers, fetchSingleUser, fetchUsersPagination } from "../API/users.js";
+import { getLocalUserData } from "../services/localStorage.js";
+
 /**
  * get all users available to the API/localStorage.
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
-export async function fetchAllUsers(alwaysUpdate = false) {
+export async function getAllUsers(alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/users?limit=0')).json();
 }
 
@@ -11,7 +14,7 @@ export async function fetchAllUsers(alwaysUpdate = false) {
  * @param {number} userId - id of user to get.
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
-export async function fetchSingleUser(userId, alwaysUpdate = false) {
+export async function getSingleUser(userId, alwaysUpdate = false) {
     return (await fetch('https://dummyjson.com/users/' + userId)).json();
 }
 
@@ -20,6 +23,6 @@ export async function fetchSingleUser(userId, alwaysUpdate = false) {
  * @param {number} limit - How many users to get. Defaults to 25 users.
  * @param {number} skip - How many users to skip. Defaults to 0.
  */
-export async function fetchUsersPagination(limit = 25, skip = 0) {
+export async function getUsersPagination(limit = 25, skip = 0) {
     return (await fetch(`https://dummyjson.com/users?limit=${limit}&skip=${skip}`)).json();
 }
