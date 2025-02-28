@@ -1,0 +1,1 @@
+// File for all localStorage related data.

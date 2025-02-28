@@ -11,5 +11,5 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
  * @param {*} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
 export async function getSingleComment(commentId, alwaysUpdate = false) {
-
+    return (await fetch('https://dummyjson.com/comments/' + commentId)).json()
 }
