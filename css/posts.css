@@ -233,6 +233,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
+    overflow-y: auto;
 }
 
 .unhidden-flex>label {

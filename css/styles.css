@@ -45,9 +45,10 @@ body {
     border: 2px solid rgb(31, 31, 31);
     border-radius: 3rem;
     position: fixed;
-    top: 10rem;
-    left: 10%;
-    right: 10%;
+    top: 4rem;
+    left: 10rem;
+    right: 10rem;
+    bottom: 4rem;
     z-index: 901;
 }
 
@@ -202,9 +203,8 @@ main {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
-
 
 footer {
     display: flex;
