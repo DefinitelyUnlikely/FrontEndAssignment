@@ -1,17 +1,15 @@
 /**
  * get all users available to the API/localStorage.
- * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
-export async function fetchAllUsers(alwaysUpdate = false) {
+export async function fetchAllUsers() {
     return (await fetch('https://dummyjson.com/users?limit=0')).json();
 }
 
 /**
  * Get a single user using its id.
  * @param {number} userId - id of user to get.
- * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
-export async function fetchSingleUser(userId, alwaysUpdate = false) {
+export async function fetchSingleUser(userId) {
     return (await fetch('https://dummyjson.com/users/' + userId)).json();
 }
 
