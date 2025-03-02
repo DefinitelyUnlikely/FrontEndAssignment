@@ -1,5 +1,5 @@
 import { fetchCommentsByPost, fetchSingleComment } from "../API/comments.js";
-import { getLocalCommentData } from "../services/localStorage.js";
+import { getLocalCommentData, saveLocalCommentData } from "../services/localStorage.js";
 
 /**
  * get all comments on a specific post, by post id, available to the API/localStorage.

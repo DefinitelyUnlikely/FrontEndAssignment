@@ -1,5 +1,5 @@
 import { fetchAllPosts, fetchSinglePost } from "../API/posts.js";
-import { getLocalPostData } from "../services/localStorage.js";
+import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
 
 /**
  * get all posts available to the API/localStorage.
@@ -7,9 +7,13 @@ import { getLocalPostData } from "../services/localStorage.js";
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
 export async function getAllPosts(alwaysUpdate = false) {
-    if (!alwaysUpdate) {
-        return;
+
+    if (alwaysUpdate) {
+        const posts = (await fetch('https://dummyjson.com/posts?limit=20')).json();
+        saveLocalPostData(posts);
+        return posts;
     }
+
     return (await fetch('https://dummyjson.com/posts?limit=20')).json();
 }
 

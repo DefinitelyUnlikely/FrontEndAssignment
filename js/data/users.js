@@ -1,5 +1,5 @@
 import { fetchAllUsers, fetchSingleUser, fetchUsersPagination } from "../API/users.js";
-import { getLocalUserData } from "../services/localStorage.js";
+import { getLocalUserData, saveLocalUserData } from "../services/localStorage.js";
 
 /**
  * get all users available to the API/localStorage.
@@ -7,13 +7,16 @@ import { getLocalUserData } from "../services/localStorage.js";
  */
 export async function getAllUsers(alwaysUpdate = false) {
     if (alwaysUpdate) {
-        return await fetchAllUsers();
+        let users = await fetchAllUsers();
+        saveLocalUserData(users);
+    } else {
+        let users = getLocalUserData();
+        if (users == []) {
+            users = await fetchAllUsers();
+        }
+
     }
 
-    let users = getLocalUserData();
-    if (users == []) {
-        users = await fetchAllUsers();
-    }
     return users;
 }
 
@@ -23,9 +26,25 @@ export async function getAllUsers(alwaysUpdate = false) {
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
 export async function getSingleUser(userId, alwaysUpdate = false) {
+    let user;
     if (alwaysUpdate) {
-        return await fetchSingleUser(userId);
+        user = await fetchSingleUser(userId);
+        saveLocalUserData(user, single = true);
+    } else {
+        let users = getLocalUserData();
+
+        if (users = []) {
+            user = await fetchSingleUser(userId);
+        }
+        for (let u of users) {
+            console.log(u);
+            if (u.id == userId) {
+                user = u;
+                break;
+            }
+        }
     }
+    return user;
 }
 
 /**
