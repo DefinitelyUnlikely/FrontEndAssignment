@@ -8,7 +8,8 @@ export async function renderAllPosts() {
     // Function to render posts on the main pages
     const postArea = document.getElementsByClassName("post-area")[0]
 
-    // Fetch Dummy data from dummyJSON.com
+    // Fetch Dummy data from dummyJSON.com.
+    // ATM we do not get all posts, but limits it to 20. 
     let postArray = await getAllPosts();
 
     for (let post of postArray.posts) {
@@ -59,7 +60,7 @@ export async function renderAllPosts() {
         // Adding ability to get single post
         renderedPost.addEventListener("click", (event) => {
             event.stopPropagation();
-            renderSinglePost(post.id, post);
+            renderSinglePost(post.id);
         });
 
     }

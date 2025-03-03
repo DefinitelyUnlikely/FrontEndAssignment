@@ -1,5 +1,5 @@
 /**
- * get all posts available to the API/localStorage.
+ * get all posts available to the API/localStorage. (Current implementation only gets 20 posts, set limit=0 to get all posts)
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
 export async function fetchAllPosts() {

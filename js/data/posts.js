@@ -1,4 +1,4 @@
-import { fetchAllPosts, fetchSinglePost } from "../API/posts.js";
+import { fetchAllPosts, fetchAllPostTagsList, fetchSinglePost } from "../API/posts.js";
 import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
 
 /**
@@ -8,13 +8,23 @@ import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js
  */
 export async function getAllPosts(alwaysUpdate = false) {
 
+    let posts = [];
+
     if (alwaysUpdate) {
-        const posts = (await fetch('https://dummyjson.com/posts?limit=20')).json();
+        posts = await fetchAllPosts();
         saveLocalPostData(posts);
         return posts;
     }
 
-    return (await fetch('https://dummyjson.com/posts?limit=20')).json();
+    posts = getLocalPostData();
+
+    if (posts = []) {
+        posts = await fetchAllPosts();
+        saveLocalPostData(posts);
+    }
+
+
+    return posts;
 }
 
 /**
@@ -25,9 +35,23 @@ export async function getAllPosts(alwaysUpdate = false) {
  */
 export async function getSinglePost(postId, alwaysUpdate = false) {
     if (alwaysUpdate) {
-        return (await fetch('https://dummyjson.com/posts/' + postId)).json();
+        return await fetchSinglePost(postId);
     }
-    return (await fetch('https://dummyjson.com/posts/' + postId)).json();
+
+    let posts = getLocalPostData();
+
+    if (posts = []) {
+        let post = await fetchSinglePost(postId);
+        saveLocalPostData(post, true);
+        return post;
+    }
+
+    for (let post in posts) {
+        if (post.id == postId) {
+            return post;
+        }
+    };
+    return await fetchSinglePost(postId);
 }
 
 /**
@@ -37,7 +61,8 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
  */
 export async function getAllPostTagsList(alwaysUpdate = false) {
     if (alwaysUpdate) {
-        return (await fetch('https://dummyjson.com/posts/tag-list')).json();
+        return await fetchAllPostTagsList();
     }
-    return (await fetch('https://dummyjson.com/posts/tag-list')).json();
+
+    return await fetchAllPostTagsList();
 }

@@ -19,7 +19,7 @@ export function saveLocalPostData(posts, single = false) {
     try {
         if (single) {
             let localPosts = getLocalPostData();
-            localPosts.unshift(posts);
+            localPosts.posts.unshift(posts);
             localStorage.setItem("posts", JSON.stringify(localPosts));
             return;
         }
@@ -29,15 +29,15 @@ export function saveLocalPostData(posts, single = false) {
     }
 }
 
-export function getLocalCommentData() {
+export function getLocalCommentsByPostData(postId) {
     try {
-        const posts = localStorage.getItem("comments");
+        const comments = localStorage.getItem("comments");
 
-        if (posts == null) {
+        if (comments == null) {
             return [];
         }
 
-        return JSON.parse(posts);
+        return JSON.parse(comments);
 
     } catch (e) {
         throw new Error("Could not get data");
@@ -62,13 +62,13 @@ export function saveLocalCommentData(comments, single = false) {
 
 export function getLocalUserData() {
     try {
-        const posts = localStorage.getItem("users");
+        const users = localStorage.getItem("users");
 
-        if (posts == null) {
+        if (users == null) {
             return [];
         }
 
-        return JSON.parse(posts);
+        return JSON.parse(users);
 
     } catch (e) {
         throw new Error("Could not get data");
@@ -78,7 +78,7 @@ export function getLocalUserData() {
 export function saveLocalUserData(users, single = false) {
     try {
         if (single) {
-            let localUsers = getLocalUsersData();
+            let localUsers = getLocalUserData();
             localUsers.unshift(users);
             localStorage.setItem("users", JSON.stringify(localUsers));
             return;
@@ -89,3 +89,8 @@ export function saveLocalUserData(users, single = false) {
         throw new Error("Could not save user data");
     }
 }
+
+
+export function getLocalPostTagData() { }
+
+export function saveLocalPostTagData() { }

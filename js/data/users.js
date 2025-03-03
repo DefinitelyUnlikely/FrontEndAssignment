@@ -13,8 +13,8 @@ export async function getAllUsers(alwaysUpdate = false) {
         let users = getLocalUserData();
         if (users == []) {
             users = await fetchAllUsers();
+            saveLocalUserData(users);
         }
-
     }
 
     return users;
@@ -35,6 +35,7 @@ export async function getSingleUser(userId, alwaysUpdate = false) {
 
         if (users = []) {
             user = await fetchSingleUser(userId);
+            saveLocalUserData(user, true);
         }
         for (let u of users) {
             console.log(u);
@@ -53,8 +54,5 @@ export async function getSingleUser(userId, alwaysUpdate = false) {
  * @param {number} skip - How many users to skip. Defaults to 0.
  */
 export async function getUsersPagination(limit = 25, skip = 0) {
-    if (!alwaysUpdate) {
-        return (await fetch(`https://dummyjson.com/users?limit=${limit}&skip=${skip}`)).json();
-    }
     return (await fetch(`https://dummyjson.com/users?limit=${limit}&skip=${skip}`)).json();
 }
