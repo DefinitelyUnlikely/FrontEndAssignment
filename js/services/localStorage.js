@@ -17,8 +17,6 @@ export function getLocalPostData() {
 
 export function saveLocalPostData(posts, single = false) {
     try {
-        console.log("inside savelocalpost");
-        console.log(posts);
         if (single) {
             let localPosts = getLocalPostData();
             localPosts.posts.unshift(posts);

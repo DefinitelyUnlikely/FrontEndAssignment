@@ -26,25 +26,31 @@ export async function getAllUsers(alwaysUpdate = false) {
  * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
  */
 export async function getSingleUser(userId, alwaysUpdate = false) {
+
     let user;
+
     if (alwaysUpdate) {
         user = await fetchSingleUser(userId);
-        saveLocalUserData(user, single = true);
+        saveLocalUserData(user, true);
     } else {
         let users = getLocalUserData();
 
-        if (users = []) {
+        if (users == []) {
             user = await fetchSingleUser(userId);
             saveLocalUserData(user, true);
         }
+
         for (let u of users) {
-            console.log(u);
             if (u.id == userId) {
                 user = u;
                 break;
             }
         }
+
+        user = await fetchSingleUser(userId);
+        saveLocalUserData(user, true);
     }
+
     return user;
 }
 

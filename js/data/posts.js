@@ -7,7 +7,6 @@ import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
 export async function getAllPosts(alwaysUpdate = false) {
-    console.log("Inside getAllPosts");
     let posts = [];
 
     if (alwaysUpdate) {
@@ -18,7 +17,8 @@ export async function getAllPosts(alwaysUpdate = false) {
 
     posts = getLocalPostData();
 
-    if (posts = []) {
+    if (posts == []) {
+        console.log("Inside the if statement posts is an empty array");
         posts = await fetchAllPosts();
         saveLocalPostData(posts);
     }
@@ -40,7 +40,7 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
 
     let posts = getLocalPostData();
 
-    if (posts = []) {
+    if (posts == []) {
         let post = await fetchSinglePost(postId);
         saveLocalPostData(post, true);
         return post;
