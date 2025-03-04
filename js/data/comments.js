@@ -1,5 +1,5 @@
 import { fetchCommentsByPost, fetchSingleComment } from "../API/comments.js";
-import { getLocalCommentsByPostData, saveLocalCommentData } from "../services/localStorage.js";
+import { getLocalCommentsByPost, saveLocalCommentData } from "../services/localStorage.js";
 
 /**
  * get all comments on a specific post, by post id, available to the API/localStorage.
@@ -8,9 +8,17 @@ import { getLocalCommentsByPostData, saveLocalCommentData } from "../services/lo
  */
 export async function getCommentsByPost(postId, alwaysUpdate = false) {
     if (alwaysUpdate) {
-        return (await fetch('https://dummyjson.com/comments/post/' + postId)).json();
+        return await fetchCommentsByPost(postId);
     }
-    return (await fetch('https://dummyjson.com/comments/post/' + postId)).json();
+
+    let comments = getLocalCommentsByPost();
+
+    if (comments = []) {
+        comments = await fetchCommentsByPost(postId);
+        saveLocalCommentData(comments, postId);
+    }
+
+    return comments;
 }
 
 /**
@@ -21,8 +29,8 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
  */
 export async function getSingleComment(commentId, alwaysUpdate = false) {
     if (alwaysUpdate) {
-        return (await fetch('https://dummyjson.com/comments/' + commentId)).json();
+        return await fetchSingleComment(commentId);
     }
 
-    return (await fetch('https://dummyjson.com/comments/' + commentId)).json();
+    return await fetchSingleComment(commentId);
 }

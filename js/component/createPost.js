@@ -77,13 +77,14 @@ export async function renderCreatePostArea() {
     createArea.append(submitButton);
 
     function submitButtonEvent() {
-        let title = titleInput.innerText;
-        let body = bodyInput.innerText;
+        let title = titleInput.value;
+        let body = bodyInput.value;
         let userId = getCurrentlySelectedUser().id;
         let tags = [];
         let tagsHTML = document.getElementsByClassName("picked");
 
-        for (let t in tagsHTML) {
+        console.log(tagsHTML);
+        for (let t of tagsHTML) {
             tags.push(t.innerText);
         }
 

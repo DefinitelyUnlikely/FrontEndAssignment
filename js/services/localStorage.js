@@ -29,9 +29,9 @@ export function saveLocalPostData(posts, single = false) {
     }
 }
 
-export function getLocalCommentsByPostData(postId) {
+export function getLocalCommentsByPost(postId) {
     try {
-        const comments = localStorage.getItem("comments");
+        const comments = localStorage.getItem("comments/" + postId);
 
         if (comments == null) {
             return [];
@@ -45,12 +45,12 @@ export function getLocalCommentsByPostData(postId) {
 
 }
 
-export function saveLocalCommentData(comments, single = false) {
+export function saveLocalCommentData(comments, postId, single = false) {
     try {
         if (single) {
             let localComments = getLocalCommentsData();
             localComments.unshift(comments);
-            localStorage.setItem("comments", JSON.stringify(localComments));
+            localStorage.setItem("comments" + postId, JSON.stringify(localComments));
             return;
         }
 
