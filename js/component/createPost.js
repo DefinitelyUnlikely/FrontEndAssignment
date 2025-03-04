@@ -100,8 +100,6 @@ export async function renderCreatePostArea() {
 
         console.log(post);
         saveLocalPostData(post, true);
-        console.log("End of post submit");
-
     }
 
     submitButton.addEventListener("click", submitButtonEvent)

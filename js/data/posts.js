@@ -7,7 +7,7 @@ import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
 export async function getAllPosts(alwaysUpdate = false) {
-
+    console.log("Inside getAllPosts");
     let posts = [];
 
     if (alwaysUpdate) {
