@@ -1,5 +1,6 @@
 import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
 import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
+import { getCurrentlySelectedUser } from "../constants.js"
 
 export async function createPostButton() {
     const createButton = document.getElementById("create-post");
@@ -75,5 +76,32 @@ export async function renderCreatePostArea() {
     submitButton.innerText = "Submit";
     createArea.append(submitButton);
 
-    submitButton.addEventListener("click", () => { })
+    function submitButtonEvent() {
+        let title = titleInput.innerText;
+        let body = bodyInput.innerText;
+        let userId = getCurrentlySelectedUser().id;
+        let tags = [];
+        let tagsHTML = document.getElementsByClassName("picked");
+
+        for (let t in tagsHTML) {
+            tags.push(t.innerText);
+        }
+
+        let post = {
+            "id": 2131,
+            "title": title,
+            "body": body,
+            "tags": tags,
+            "reactions": { "likes": 0, "dislikes": 0 },
+            "views": 0,
+            "userId": userId
+        }
+
+        console.log(post);
+        saveLocalPostData(post, true);
+        console.log("End of post submit");
+
+    }
+
+    submitButton.addEventListener("click", submitButtonEvent)
 }
