@@ -1,5 +1,5 @@
 import { getCommentsByPost } from "../data/comments.js";
-import { renderSinglePost } from "./posts.js";
+import { renderSinglePost } from "./post.js";
 
 
 
