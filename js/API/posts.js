@@ -13,6 +13,7 @@ export async function fetchAllPosts() {
  */
 export async function fetchSinglePost(postId) {
     return (await fetch('https://dummyjson.com/posts/' + postId)).json();
+
 }
 
 /**

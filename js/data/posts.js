@@ -43,13 +43,16 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
         return post;
     }
 
-    for (let post in posts) {
+
+    for (let post of posts.posts) {
         if (post.id == postId) {
             return post;
         }
     };
 
-    return await fetchSinglePost(postId);
+    let post = await fetchSinglePost(postId);
+    return post;
+
 }
 
 /**

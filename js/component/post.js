@@ -16,6 +16,8 @@ export async function renderSinglePost(postId, post = null, showComments = false
         post = await getSinglePost(postId);
     }
 
+    if (!post.id) { console.log("hello") }
+
     const singlePostRender = document.createElement("div");
     singlePostRender.classList.add("single-post");
 
