@@ -1,6 +1,7 @@
 import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
 import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
 import { getCurrentlySelectedUser } from "../constants.js"
+import { renderAllPosts } from "./posts.js";
 
 export async function createPostButton() {
     const createButton = document.getElementById("create-post");
@@ -79,15 +80,35 @@ export async function renderCreatePostArea() {
     function submitButtonEvent() {
         let title = titleInput.value;
         let body = bodyInput.value;
-        let userId = getCurrentlySelectedUser().id;
+        let userId = getCurrentlySelectedUser() ? getCurrentlySelectedUser().id : "No user selected"
         let tags = [];
         let tagsHTML = document.getElementsByClassName("picked");
 
-        console.log(tagsHTML);
         for (let t of tagsHTML) {
             tags.push(t.innerText);
         }
 
+        if (typeof (userId) != "number") {
+            bodyInput.placeholder = "No user!";
+            return;
+        }
+
+        if (!title) {
+            titleInput.placeholder = "Please add a title";
+            return;
+        }
+
+        if (!body) {
+            bodyInput.placeholder = "Please add text to your post!";
+            return;
+        }
+
+        if (tags.length == 0) {
+            bodyInput.placeholder = "Please select tags for your post!";
+            return;
+        }
+
+        // Need to fix ID from static to dynamic.
         let post = {
             "id": 2131,
             "title": title,
@@ -98,8 +119,11 @@ export async function renderCreatePostArea() {
             "userId": userId
         }
 
-        console.log(post);
         saveLocalPostData(post, true);
+        renderAllPosts();
+        createArea.classList.add("hidden");
+        createArea.classList.remove("unhidden-flex");
+        createArea.innerHTML = "";
     }
 
     submitButton.addEventListener("click", submitButtonEvent)

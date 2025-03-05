@@ -11,7 +11,7 @@ export async function getAllUsers(alwaysUpdate = false) {
         saveLocalUserData(users);
     } else {
         let users = getLocalUserData();
-        if (users == []) {
+        if (users.length == 0) {
             users = await fetchAllUsers();
             saveLocalUserData(users);
         }
@@ -35,7 +35,7 @@ export async function getSingleUser(userId, alwaysUpdate = false) {
     } else {
         let users = getLocalUserData();
 
-        if (users == []) {
+        if (users.length == 0) {
             user = await fetchSingleUser(userId);
             saveLocalUserData(user, true);
         }

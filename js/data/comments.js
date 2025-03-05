@@ -13,7 +13,7 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
 
     let comments = getLocalCommentsByPost();
 
-    if (comments == []) {
+    if (comments.length == 0) {
         comments = await fetchCommentsByPost(postId);
         saveLocalCommentData(comments, postId);
     }

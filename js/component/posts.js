@@ -7,6 +7,7 @@ import { renderPostCommentBox } from "./createComment.js";
 export async function renderAllPosts() {
     // Function to render posts on the main pages
     const postArea = document.getElementsByClassName("post-area")[0]
+    postArea.innerHTML = "";
 
     // Fetch Dummy data from dummyJSON.com.
     // ATM we do not get all posts, but limits it to 20. 
