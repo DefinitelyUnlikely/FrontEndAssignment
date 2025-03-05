@@ -43,7 +43,6 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
         return post;
     }
 
-
     for (let post of posts.posts) {
         if (post.id == postId) {
             return post;

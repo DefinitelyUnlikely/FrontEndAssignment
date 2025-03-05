@@ -43,6 +43,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     const renderComments = async () => {
         let comments = await getCommentsByPost(postId);
 
+        console.log(comments);
         for (let comment of comments.comments) {
             const singleComment = document.createElement("div");
             singleComment.classList.add("single-comment");
