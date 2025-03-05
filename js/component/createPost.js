@@ -104,7 +104,6 @@ export async function renderCreatePostArea() {
         }
 
         if (tags.length == 0) {
-            bodyInput.placeholder = "Please select tags for your post!";
             return;
         }
 

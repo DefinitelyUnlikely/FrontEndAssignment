@@ -107,7 +107,9 @@ export async function renderSinglePost(postId, post = null, showComments = false
     document.body.append(singlePostRender);
 
     const renderComments = async () => {
-        for (let comment of (await getCommentsByPost(postId)).comments) {
+        let comments = await getCommentsByPost(postId);
+
+        for (let comment of comments.comments) {
             const singleComment = document.createElement("div");
             singleComment.classList.add("single-comment");
             commentArea.append(singleComment);
