@@ -2,10 +2,15 @@
 <html>
 
 <head>
-    <title>Ripped Offdit - Home</title>
+    <title>Ripped Offdit - Popular</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/posts.css">
     <link rel="stylesheet" href="css/font/JetBrainsMono.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
 </head>
 
 <body>
@@ -15,11 +20,15 @@
             <div class="off-screen-span">
                 <span>Currently posting as user: </span><span id="selected-user">None </span>
             </div>
-            <ul>
-                <li><a href="#">Change User</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Logout</a></li>
+            <ul id="ham-options">
+                <li id="change-user">Change User</li>
+                <li>Settings</li>
+                <li>Logout</li>
             </ul>
+        </div>
+
+        <div id="create-post-area" class="hidden">
+
         </div>
 
         <header>
@@ -27,6 +36,7 @@
                 <div id="nav-links">
                     <a href="index.html">Home</a>
                     <a href="popular.html" style="color: orangered">Popular</a>
+                    <a href="all.html">All</a>
                 </div>
 
                 <div id="nav-search">
@@ -50,7 +60,7 @@
 
         <footer>
             <h4>Contact</h4>
-            <p>Nowhere Ville, 123 45, Sim City</p>
+            <p>Pirate Cove, 123 45, The seven seas</p>
             <p>info@redditripoff.com</p>
 
         </footer>
@@ -58,7 +68,6 @@
     </div>
 
     <script type="module" src="js/main.js"></script>
-    <script type="module" src="js/component/posts.js"></script>
 </body>
 
 </html>

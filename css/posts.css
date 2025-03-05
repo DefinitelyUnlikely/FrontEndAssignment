@@ -14,18 +14,337 @@
     scrollbar-width: none;
 }
 
-.post-area>article {
+.post-area>div {
+    display: flex;
+    width: 60%;
+    max-width: 650px;
+    cursor: pointer;
+}
+
+/* Main post body */
+.post-area>div>article {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: rgb(40, 40, 40);
-    min-height: 20rem;
-    width: 70%;
+    min-height: 15rem;
+    width: 100%;
     border: 2px solid rgb(31, 31, 31);
     border-radius: 0.3rem;
     flex-shrink: 0;
+    z-index: 100;
+
 }
 
-.post-area>article>hr {
+.post-area>div>article>p {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    width: 80%;
+}
+
+.post-area>div>article>p:nth-of-type(1) {
+    font-size: 0.6rem;
+    max-height: 1rem;
+    max-width: 10rem;
+}
+
+.post-area>div>article>p:nth-of-type(1):hover {
+    cursor: pointer;
+}
+
+.post-area>div>article>p>a {
+    color: antiquewhite;
+    cursor: pointer;
+}
+
+.post-area>div>article>span>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 90%;
+}
+
+.post-area>div>article>span>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.post-area>div>article>span>button:active {
+    transition: 0.2s ease;
+    background-color: orangered;
+}
+
+.post-area>div>article>div>div {
+    display: flex;
+    min-height: 2rem;
+    width: 100%;
+    margin: 0.2rem;
+}
+
+.post-area>div>article>div>div:nth-child(2) {
+    justify-content: end;
+}
+
+.post-area>div>article>div>div>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 90%;
+}
+
+.post-area>div>article>div>div>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.post-area>div>article>div>div>button:active {
+    transition: 0.2s ease;
+    background-color: orangered;
+}
+
+/* Sidebar */
+
+#hidden-sidebar {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.post-area>div>div {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 5rem;
+}
+
+.post-area>div>div>div {
+    display: flex;
+    border: 1px solid black;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 0;
+}
+
+.post-area>div>div>div:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+.post-area>div>div>div:active {
+    transition: 0.2s ease;
+    color: orangered;
+}
+
+
+/* Render a single post CSS */
+.single-post {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(31, 31, 31);
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    left: 15%;
+    right: 15%;
+    top: 4.5rem;
+    bottom: 4.5rem;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0.3rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(31, 31, 31) rgb(41, 41, 41);
+    z-index: 1000;
+}
+
+.single-post>h2 {
+    margin: 0.5rem;
+}
+
+.single-post>p {
+    margin: 0.5rem;
+}
+
+.comment-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    z-index: 1000;
+}
+
+.single-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0.3rem;
+    background-color: rgb(31, 31, 31);
+    gap: 0.2rem;
+    z-index: 1000;
     width: 98%;
+}
+
+.single-comment>hr {
+    width: 93%;
+    height: 0.3rem;
+    background-color: rgb(41, 41, 41);
+    border: none;
+}
+
+.bottom-div {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+
+.bottom-div>div>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 90%;
+}
+
+.bottom-div>div>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.bottom-div>div>button:active {
+    transition: 0.2s ease;
+    background-color: orangered;
+}
+
+/* Create Post Window/Area */
+.unhidden-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-y: auto;
+}
+
+.unhidden-flex>label {
+    flex-shrink: 1;
+}
+
+#title-input {
+    height: 1.5rem;
+    width: 90%;
+    background-color: black;
+    border: 0;
+    border-radius: 0.3rem;
+    outline: 0;
+    color: #faebd7;
+}
+
+#body-input {
+    height: 10rem;
+    width: 90%;
+    background-color: black;
+    border: 0;
+    border-radius: 0.3rem;
+    outline: 0;
+    color: #faebd7;
+}
+
+.unhidden-flex>div {
+    border: 3px solid rgb(31, 31, 31);
+    border-radius: 0.5rem;
+    height: 10rem;
+    width: 88%;
+    margin: 0.5rem;
+    padding: 1%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(31, 31, 31) rgb(41, 41, 41);
+}
+
+/* Submit button */
+.unhidden-flex>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 3rem;
+    width: 70%;
+    margin: 0.5rem;
+}
+
+.unhidden-flex>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.unhidden-flex>button:active {
+    transition: 0.2s ease;
+    background-color: orangered;
+}
+
+/* tag 'buttons' */
+.unhidden-flex>div>button {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 1.5rem;
+    margin: 0.1rem;
+}
+
+.unhidden-flex>div>button:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+.unhidden-flex>div>button.picked {
+    transition: 0.2s ease;
+    background-color: orangered;
+}
+
+/*  Comment box */
+#comment-text {
+    height: 10rem;
+    width: 90%;
+    background-color: black;
+    border: 0;
+    border-radius: 0.3rem;
+    outline: 0;
+    color: #faebd7;
+    margin: 0.5rem;
+}
+
+#comment-label {
+    padding-top: 2rem;
+    margin-top: 2rem;
+}
+
+#comment-submit {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(0, 0, 0);
+    color: antiquewhite;
+    height: 1.5rem;
+    margin: 0.1rem;
+}
+
+#comment-submitbutton:hover {
+    background-color: rgb(37, 37, 37);
+}
+
+#comment-submit:active {
+    transition: 0.2s ease;
+    background-color: orangered;
 }
