@@ -6,7 +6,11 @@ export function OffScreenMenu() {
     const changeUser = document.querySelector("#change-user")
     const logout = document.querySelector("#logout");
 
-    selectedUser.innerText = getCurrentlySelectedUser().username;
+    let user = getCurrentlySelectedUser();
+
+    if (user) {
+        selectedUser.innerText = user.username;
+    }
 
     changeUser.addEventListener("click", () => { pickUserMenu(); });
     logout.addEventListener("click", () => { updateCurrentSelectedUser(null) })
