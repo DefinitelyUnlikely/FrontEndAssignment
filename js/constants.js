@@ -1,3 +1,5 @@
+import { getAllPosts } from "./data/posts.js";
+
 let currentSelectedUser = null;
 
 export function getCurrentlySelectedUser() {
@@ -20,4 +22,10 @@ export function updateCurrentSelectedUser(user) {
 
 function updateSelectedUserHTML(newValue) {
     document.querySelector("#selected-user").innerText = newValue != null ? newValue : "None";
+}
+
+
+export async function getNewPostId() {
+    let posts = (await getAllPosts()).posts;
+    return (Number("12345" + posts.length));
 }

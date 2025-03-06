@@ -1,6 +1,6 @@
 import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
 import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
-import { getCurrentlySelectedUser } from "../constants.js"
+import { getCurrentlySelectedUser, getNewPostId } from "../constants.js"
 import { renderAllPosts } from "./posts.js";
 
 export async function createPostButton() {
@@ -77,7 +77,7 @@ export async function renderCreatePostArea() {
     submitButton.innerText = "Submit";
     createArea.append(submitButton);
 
-    function submitButtonEvent() {
+    async function submitButtonEvent() {
         let title = titleInput.value;
         let body = bodyInput.value;
         let userId = getCurrentlySelectedUser() ? getCurrentlySelectedUser().id : "No user selected"
@@ -107,9 +107,9 @@ export async function renderCreatePostArea() {
             return;
         }
 
-        // Need to fix ID from static to dynamic.
+        let nid = await getNewPostId();
         let post = {
-            "id": 2131,
+            "id": nid,
             "title": title,
             "body": body,
             "tags": tags,
