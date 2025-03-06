@@ -7,7 +7,6 @@ function main() {
     hamburgerMenu();
     OffScreenMenu();
     createPostButton();
-
     renderAllPosts();
 }
 

@@ -1,23 +1,29 @@
 import { getAllPosts } from "./data/posts.js";
 
-let currentSelectedUser = null;
+let currentlySelectedUser = null;
 
 export function getCurrentlySelectedUser() {
-    return currentSelectedUser;
+    if (!currentlySelectedUser) {
+        currentlySelectedUser = JSON.parse(localStorage.getItem("current-user"));
+    }
+
+    return currentlySelectedUser;
 }
 
 export function updateCurrentSelectedUser(user) {
 
+    // To logout and catch any unexpected behavior
     if (user == null) {
-        currentSelectedUser = null;
+        currentlySelectedUser = null;
+        localStorage.removeItem("current-user");
         updateSelectedUserHTML(null);
-        console.log("Updated user to null");
         return;
     }
 
-    currentSelectedUser = user;
+    currentlySelectedUser = user;
+    localStorage.setItem("current-user", JSON.stringify(user));
     updateSelectedUserHTML(user.username);
-    console.log("You've updated the user to " + user.username);
+
 }
 
 function updateSelectedUserHTML(newValue) {
