@@ -35,10 +35,4 @@ export function submitComment(post, text) {
         return;
     }
 
-    console.log(user);
-    console.log(post);
-    console.log(text);
-
-    // We now need to fix localStorage. We'll add the comment to the 
-    // corresponding localStorage and rerender the comments. 
 }

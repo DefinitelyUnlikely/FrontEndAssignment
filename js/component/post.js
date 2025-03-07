@@ -69,12 +69,12 @@ export async function renderSinglePost(postId, post = null, showComments = false
 
     singlePostRender.addEventListener("click", (event) => event.stopPropagation());
 
-    function removeSinlePost(event) {
+    function removeSinglePost(event) {
         event.stopPropagation();
         singlePostRender.remove();
-        document.body.removeEventListener("click", removeSinlePost);
+        document.body.removeEventListener("click", removeSinglePost);
     }
-    document.body.addEventListener("click", removeSinlePost);
+    document.body.addEventListener("click", removeSinglePost);
 
     if (!showComments) {
         const showCommentsText = document.createElement("p");
