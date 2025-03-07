@@ -1,5 +1,5 @@
 import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
-import { getLocalPostData, saveLocalPostData } from "../services/posts.js";
+import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
 import { getCurrentlySelectedUser, getNewPostId } from "../constants.js"
 import { renderAllPosts } from "./posts.js";
 
@@ -118,7 +118,7 @@ export async function renderCreatePostArea() {
             "userId": userId
         }
 
-        saveLocalPostData(post);
+        saveLocalPostData(post, true);
         renderAllPosts();
         createArea.classList.add("hidden");
         createArea.classList.remove("unhidden-flex");

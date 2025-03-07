@@ -13,16 +13,15 @@ export function getLocalPostData() {
     }
 }
 
-export function saveLocalPostData(posts, replace = false) {
+export function saveLocalPostData(posts, single = false) {
     try {
-        if (replace) {
-            localStorage.setItem("posts", JSON.stringify(posts));
+        if (single) {
+            let localPosts = getLocalPostData();
+            localPosts.posts.unshift(posts);
+            localStorage.setItem("posts", JSON.stringify(localPosts));
             return;
         }
-        let localPosts = getLocalPostData();
-        localPosts.posts.unshift(posts);
-        localStorage.setItem("posts", JSON.stringify(localPosts));
-
+        localStorage.setItem("posts", JSON.stringify(posts));
     } catch (e) {
         throw new Error("Could not save post data");
     }

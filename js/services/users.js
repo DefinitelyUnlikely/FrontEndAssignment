@@ -13,18 +13,16 @@ export function getLocalUserData() {
     }
 }
 
-export function saveLocalUserData(users, replace = false) {
+export function saveLocalUserData(users, single = false) {
     try {
-        if (replace) {
-            localStorage.setItem("users", JSON.stringify(users));
-
+        if (single) {
+            let localUsers = getLocalUserData();
+            localUsers.unshift(users);
+            localStorage.setItem("users", JSON.stringify(localUsers));
             return;
         }
 
-        let localUsers = getLocalUserData();
-        localUsers.unshift(users);
-        localStorage.setItem("users", JSON.stringify(localUsers));
-
+        localStorage.setItem("users", JSON.stringify(users));
     } catch (e) {
         throw new Error("Could not save user data");
     }
