@@ -1,3 +1,4 @@
+import { getAllComments } from "./data/comments.js";
 import { getAllPosts } from "./data/posts.js";
 
 let currentlySelectedUser = null;
@@ -34,4 +35,8 @@ function updateSelectedUserHTML(newValue) {
 export async function getNewPostId() {
     let posts = (await getAllPosts()).posts;
     return (Number("12345" + posts.length));
+}
+
+export async function getNewCommentId() {
+    let comments = getAllComments();
 }

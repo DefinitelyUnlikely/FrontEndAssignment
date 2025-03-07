@@ -1,4 +1,6 @@
 import { getCurrentlySelectedUser } from "../constants.js";
+import { saveLocalCommentData } from "../services/comments.js";
+import { saveLocalPostData } from "../services/posts.js";
 
 export async function renderPostCommentBox(appendTo, post) {
     const commentLabel = document.createElement("label");
@@ -34,5 +36,19 @@ export function submitComment(post, text) {
         console.log("please enter a comment");
         return;
     }
+
+    let comment = {
+        "id": 1,
+        "body": text,
+        "postId": post.id,
+        "likes": 0,
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "fullName": user.fullName
+        }
+    }
+
+    saveLocalCommentData(comment, post.id, true);
 
 }

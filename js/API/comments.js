@@ -1,3 +1,7 @@
+export async function fetchAllComments() {
+    return (await fetch('https://dummyjson.com/comments')).json();
+}
+
 /**
  * get all comments on a specific post, by post id, available to the API/localStorage.
  * @param {number} postId - id of post to et comments for.
