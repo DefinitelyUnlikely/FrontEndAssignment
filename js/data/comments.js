@@ -29,7 +29,7 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
         return await fetchCommentsByPost(postId);
     }
 
-    let comments = getLocalCommentsByPost();
+    let comments = getLocalCommentsByPost(postId);
 
     if (comments.length == 0) {
         comments = await fetchCommentsByPost(postId);

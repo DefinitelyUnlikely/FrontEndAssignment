@@ -1,6 +1,5 @@
 import { getCurrentlySelectedUser } from "../constants.js";
 import { saveLocalCommentData } from "../services/comments.js";
-import { saveLocalPostData } from "../services/posts.js";
 
 export async function renderPostCommentBox(appendTo, post) {
     const commentLabel = document.createElement("label");
