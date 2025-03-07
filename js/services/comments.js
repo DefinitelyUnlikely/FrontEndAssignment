@@ -31,10 +31,12 @@ export function saveLocalCommentData(comments, postId = null, single = false) {
 
         if (single) {
             let localComments = getLocalCommentsByPost(postId);
+            console.log(localComments)
             localComments.comments.push(comments);
             localComments.limit = localComments.comments.length;
             localComments.total = localComments.comments.length;
             localStorage.setItem("comments/" + postId, JSON.stringify(localComments));
+            console.log("Hmm 2")
             return;
         }
 

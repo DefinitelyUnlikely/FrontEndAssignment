@@ -1,5 +1,6 @@
-import { getCurrentlySelectedUser } from "../constants.js";
+import { getCurrentlySelectedUser, getNewCommentId } from "../constants.js";
 import { saveLocalCommentData } from "../services/comments.js";
+import { renderSinglePost } from "./post.js";
 
 export async function renderPostCommentBox(appendTo, post) {
     const commentLabel = document.createElement("label");
@@ -18,12 +19,12 @@ export async function renderPostCommentBox(appendTo, post) {
     appendTo.append(commentSubmit);
 
     commentSubmit.addEventListener("click", () => {
-        submitComment(post, commentTextArea.value)
+        submitComment(post, commentTextArea.value);
     });
 }
 
 
-export function submitComment(post, text) {
+export async function submitComment(post, text) {
     const user = getCurrentlySelectedUser();
 
     if (!user) {
@@ -36,8 +37,9 @@ export function submitComment(post, text) {
         return;
     }
 
+    let nid = await getNewCommentId();
     let comment = {
-        "id": 1,
+        "id": nid,
         "body": text,
         "postId": post.id,
         "likes": 0,
@@ -49,5 +51,6 @@ export function submitComment(post, text) {
     }
 
     saveLocalCommentData(comment, post.id, true);
+    renderSinglePost(post.id, post, true);
 
 }
