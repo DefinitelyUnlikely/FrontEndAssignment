@@ -17,13 +17,13 @@ export function getLocalCommentsByPost(postId) {
 export function saveLocalCommentData(comments, postId, single = false) {
     try {
         if (single) {
-            let localComments = getLocalCommentsData();
+            let localComments = getLocalCommentsByPost(postId);
             localComments.unshift(comments);
-            localStorage.setItem("comments" + postId, JSON.stringify(localComments));
+            localStorage.setItem("comments/" + postId, JSON.stringify(localComments));
             return;
         }
 
-        localStorage.setItem("comments", JSON.stringify(comments));
+        localStorage.setItem("comments/" + postId, JSON.stringify(comments));
     } catch (e) {
         throw new Error("Could not save comment data");
     }
