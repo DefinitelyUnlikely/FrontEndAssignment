@@ -1,5 +1,5 @@
 import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
-import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
+import { getLocalPostData, saveLocalPostData } from "../services/posts.js";
 import { getCurrentlySelectedUser, getNewPostId } from "../constants.js"
 import { renderAllPosts } from "./posts.js";
 
