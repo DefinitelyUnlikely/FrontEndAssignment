@@ -1,5 +1,5 @@
 import { fetchAllPosts, fetchAllPostTagsList, fetchSinglePost } from "../API/posts.js";
-import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
+import { getLocalPostData, saveLocalPostData } from "../services/posts.js";
 
 /**
  * get all posts available to the API/localStorage.
