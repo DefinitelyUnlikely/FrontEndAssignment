@@ -1,5 +1,16 @@
 export async function fetchAllComments() {
-    return (await fetch('https://dummyjson.com/comments')).json();
+    let response = await fetch('https://dummyjson.com/comments')
+
+    if (!response.ok) {
+        return {
+            "comments": [],
+            "total": 0,
+            "skip": 0,
+            "limit": 0
+        }
+    }
+
+    return response.json();;
 }
 
 /**
@@ -7,7 +18,18 @@ export async function fetchAllComments() {
  * @param {number} postId - id of post to et comments for.
  */
 export async function fetchCommentsByPost(postId) {
-    return (await fetch('https://dummyjson.com/comments/post/' + postId)).json();
+    let response = await fetch('https://dummyjson.com/comments/post/' + postId)
+
+    if (!response.ok) {
+        return {
+            "comments": [],
+            "total": 0,
+            "skip": 0,
+            "limit": 0
+        }
+    }
+
+    return response.json();;
 }
 
 /**
