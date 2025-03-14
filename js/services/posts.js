@@ -2,8 +2,8 @@ export function getLocalPostData() {
     try {
         const posts = localStorage.getItem("posts");
 
-        if (posts == null) {
-            return null;
+        if (!posts) {
+            return posts;
         }
 
         return JSON.parse(posts);

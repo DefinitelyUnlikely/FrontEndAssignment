@@ -2,7 +2,13 @@
  * get all users available to the API/localStorage.
  */
 export async function fetchAllUsers() {
-    return (await fetch('https://dummyjson.com/users?limit=0')).json();
+    let response = await fetch('https://dummyjson.com/users?limit=0');
+
+    if (!response.ok) {
+        return []
+    }
+
+    return response.json().then(response => response.users)
 }
 
 /**
