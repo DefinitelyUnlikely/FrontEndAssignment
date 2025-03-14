@@ -12,7 +12,7 @@ export function getLocalCommentsByPost(postId) {
     try {
         const comments = localStorage.getItem("comments/" + postId);
         if (comments == null) {
-            return [];
+            return null;
         }
 
         return JSON.parse(comments);

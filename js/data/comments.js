@@ -16,8 +16,6 @@ export async function getAllComments(alwaysUpdate = false) {
     }
 
     return comments;
-
-
 }
 /**
  * get all comments on a specific post, by post id, available to the API/localStorage.

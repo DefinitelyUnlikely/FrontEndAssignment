@@ -3,7 +3,7 @@ export function getLocalUserData() {
         const users = localStorage.getItem("users");
 
         if (users == null) {
-            return [];
+            return null;
         }
 
         return JSON.parse(users);

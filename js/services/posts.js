@@ -3,7 +3,7 @@ export function getLocalPostData() {
         const posts = localStorage.getItem("posts");
 
         if (posts == null) {
-            return [];
+            return null;
         }
 
         return JSON.parse(posts);
