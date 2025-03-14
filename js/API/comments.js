@@ -2,15 +2,10 @@ export async function fetchAllComments() {
     let response = await fetch('https://dummyjson.com/comments')
 
     if (!response.ok) {
-        return {
-            "comments": [],
-            "total": 0,
-            "skip": 0,
-            "limit": 0
-        }
+        return []
     }
 
-    return response.json();;
+    return response.json().then(response => response.comments)
 }
 
 /**
@@ -21,15 +16,10 @@ export async function fetchCommentsByPost(postId) {
     let response = await fetch('https://dummyjson.com/comments/post/' + postId)
 
     if (!response.ok) {
-        return {
-            "comments": [],
-            "total": 0,
-            "skip": 0,
-            "limit": 0
-        }
+        return []
     }
 
-    return response.json();;
+    return response.json().then(response => response.comments)
 }
 
 /**
