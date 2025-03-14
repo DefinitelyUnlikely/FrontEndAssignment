@@ -33,11 +33,11 @@ function updateSelectedUserHTML(newValue) {
 
 
 export async function getNewPostId() {
-    let posts = (await getAllPosts()).posts;
+    let posts = await getAllPosts();
     return (Number("12345" + posts.length));
 }
 
 export async function getNewCommentId() {
-    let comments = (await getAllComments()).comments;
+    let comments = await getAllComments();
     return (Number("12345" + comments.length));
 }
