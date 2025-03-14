@@ -1,5 +1,7 @@
 import { getCommentsByPost } from "../data/comments.js";
 import { renderSinglePost } from "./post.js";
+import { likePost } from "../services/likes.js";
+import { dislikePost } from "../services/dislikes.js";
 
 
 
@@ -10,7 +12,9 @@ export async function hiddenPostSidebar(post) {
     const postURL = '/posts?id=' + post.id;
 
     const upvote = document.createElement("div");
+    upvote.setAttribute("id", "side-bar-upvote")
     const downvote = document.createElement("div");
+    downvote.setAttribute("id", "side-bar-downvote")
     const share = document.createElement("div");
     const amountOfComments = document.createElement("div");
 
@@ -28,8 +32,17 @@ export async function hiddenPostSidebar(post) {
     amountOfComments.innerText = totalComments + commentsOrComment;
 
     // Event listeners
-    upvote.addEventListener("click", () => { });
-    downvote.addEventListener("click", () => { });
+    upvote.addEventListener("click", (event) => {
+        event.stopPropagation();
+        downvote.classList.remove("clicked-down");
+        upvote.classList.toggle("clicked-up");
+    });
+    downvote.addEventListener("click", (event) => {
+        event.stopPropagation();
+        upvote.classList.remove("clicked-up");
+        downvote.classList.toggle("clicked-down");
+    });
+
     share.addEventListener("click", () => { });
 
     amountOfComments.addEventListener("click", (event) => {
