@@ -42,7 +42,7 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
         return post;
     }
 
-    for (let post of posts.posts) {
+    for (let post of posts) {
         if (post.id == postId) {
             return post;
         }
