@@ -12,7 +12,7 @@ export async function renderAllPosts() {
     // ATM we do not get all posts, but limits it to 20. 
     let postArray = await getAllPosts();
 
-    for (let post of postArray.posts) {
+    for (let post of postArray) {
         const postAndSidebar = document.createElement("div");
         postArea.append(postAndSidebar);
 

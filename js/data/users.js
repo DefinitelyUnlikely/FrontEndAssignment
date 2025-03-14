@@ -1,5 +1,5 @@
 import { fetchAllUsers, fetchSingleUser, fetchUsersPagination } from "../API/users.js";
-import { getLocalUserData, saveLocalUserData } from "../services/localStorage.js";
+import { getLocalUserData, saveLocalUserData } from "../services/users.js";
 
 /**
  * get all users available to the API/localStorage.

@@ -315,7 +315,7 @@
 
 /*  Comment box */
 #comment-text {
-    height: 10rem;
+    min-height: 10rem;
     width: 90%;
     background-color: black;
     border: 0;

@@ -1,4 +1,6 @@
-import { getCurrentlySelectedUser } from "../constants.js";
+import { getCurrentlySelectedUser, getNewCommentId } from "../constants.js";
+import { saveLocalCommentData } from "../services/comments.js";
+import { renderSinglePost } from "./post.js";
 
 export async function renderPostCommentBox(appendTo, post) {
     const commentLabel = document.createElement("label");
@@ -17,12 +19,12 @@ export async function renderPostCommentBox(appendTo, post) {
     appendTo.append(commentSubmit);
 
     commentSubmit.addEventListener("click", () => {
-        submitComment(post, commentTextArea.value)
+        submitComment(post, commentTextArea.value);
     });
 }
 
 
-export function submitComment(post, text) {
+export async function submitComment(post, text) {
     const user = getCurrentlySelectedUser();
 
     if (!user) {
@@ -35,10 +37,20 @@ export function submitComment(post, text) {
         return;
     }
 
-    console.log(user);
-    console.log(post);
-    console.log(text);
+    let nid = await getNewCommentId();
+    let comment = {
+        "id": nid,
+        "body": text,
+        "postId": post.id,
+        "likes": 0,
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "fullName": user.fullName
+        }
+    }
 
-    // We now need to fix localStorage. We'll add the comment to the 
-    // corresponding localStorage and rerender the comments. 
+    saveLocalCommentData(comment, post.id, true);
+    renderSinglePost(post.id, post, true);
+
 }

@@ -1,6 +1,24 @@
-import { fetchCommentsByPost, fetchSingleComment } from "../API/comments.js";
-import { getLocalCommentsByPost, saveLocalCommentData } from "../services/localStorage.js";
+import { fetchCommentsByPost, fetchSingleComment, fetchAllComments } from "../API/comments.js";
+import { getAllLocalComments, getLocalCommentsByPost, saveLocalCommentData } from "../services/comments.js";
 
+
+
+export async function getAllComments(alwaysUpdate = false) {
+    if (alwaysUpdate) {
+        return await fetchAllComments();
+    }
+
+    let comments = getAllLocalComments();
+
+    if (!comments) {
+        comments = await fetchAllComments();
+        saveLocalCommentData(comments);
+    }
+
+    return comments;
+
+
+}
 /**
  * get all comments on a specific post, by post id, available to the API/localStorage.
  * @param {number} postId - id of post to et comments for.
@@ -11,9 +29,9 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
         return await fetchCommentsByPost(postId);
     }
 
-    let comments = getLocalCommentsByPost();
+    let comments = getLocalCommentsByPost(postId);
 
-    if (comments.length == 0) {
+    if (!comments) {
         comments = await fetchCommentsByPost(postId);
         saveLocalCommentData(comments, postId);
     }

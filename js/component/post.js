@@ -16,8 +16,6 @@ export async function renderSinglePost(postId, post = null, showComments = false
         post = await getSinglePost(postId);
     }
 
-    if (!post.id) { console.log("hello") }
-
     const singlePostRender = document.createElement("div");
     singlePostRender.classList.add("single-post");
 
@@ -43,8 +41,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     const renderComments = async () => {
         let comments = await getCommentsByPost(postId);
 
-        console.log(comments);
-        for (let comment of comments.comments) {
+        for (let comment of comments) {
             const singleComment = document.createElement("div");
             singleComment.classList.add("single-comment");
             commentArea.append(singleComment);
@@ -69,12 +66,12 @@ export async function renderSinglePost(postId, post = null, showComments = false
 
     singlePostRender.addEventListener("click", (event) => event.stopPropagation());
 
-    function removeSinlePost(event) {
+    function removeSinglePost(event) {
         event.stopPropagation();
         singlePostRender.remove();
-        document.body.removeEventListener("click", removeSinlePost);
+        document.body.removeEventListener("click", removeSinglePost);
     }
-    document.body.addEventListener("click", removeSinlePost);
+    document.body.addEventListener("click", removeSinglePost);
 
     if (!showComments) {
         const showCommentsText = document.createElement("p");

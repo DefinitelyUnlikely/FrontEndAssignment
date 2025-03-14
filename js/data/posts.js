@@ -1,5 +1,5 @@
 import { fetchAllPosts, fetchAllPostTagsList, fetchSinglePost } from "../API/posts.js";
-import { getLocalPostData, saveLocalPostData } from "../services/localStorage.js";
+import { getLocalPostData, saveLocalPostData } from "../services/posts.js";
 
 /**
  * get all posts available to the API/localStorage.
@@ -15,11 +15,10 @@ export async function getAllPosts(alwaysUpdate = false) {
 
     let posts = getLocalPostData();
 
-    if (posts.length == 0) {
+    if (!posts) {
         posts = await fetchAllPosts();
         saveLocalPostData(posts);
     }
-
 
     return posts;
 }
@@ -37,13 +36,13 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
 
     let posts = getLocalPostData();
 
-    if (posts.length == 0) {
+    if (!posts) {
         let post = await fetchSinglePost(postId);
         saveLocalPostData(post, true);
         return post;
     }
 
-    for (let post of posts.posts) {
+    for (let post of posts) {
         if (post.id == postId) {
             return post;
         }

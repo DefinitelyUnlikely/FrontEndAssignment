@@ -3,7 +3,13 @@
  * @returns a json containing all posts and information pertaining to the (original) API call.
  */
 export async function fetchAllPosts() {
-    return (await fetch('https://dummyjson.com/posts?limit=20')).json();
+    let response = await fetch('https://dummyjson.com/posts?limit=20');
+
+    if (!response.ok) {
+        return []
+    }
+
+    return response.json().then(response => response.posts)
 }
 
 /**

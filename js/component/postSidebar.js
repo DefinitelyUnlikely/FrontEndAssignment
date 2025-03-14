@@ -22,7 +22,7 @@ export async function hiddenPostSidebar(post) {
     upvote.innerText = post.reactions.likes + (post.reactions.likes == 1 ? " Like" : " Likes")
     downvote.innerText = post.reactions.dislikes + (post.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
     share.innerHTML = "Share";
-    let totalComments = (await getCommentsByPost(post.id)).total;
+    let totalComments = (await getCommentsByPost(post.id)).length;
     if (!totalComments) totalComments = 0;
     let commentsOrComment = totalComments != 1 ? " comments" : " comment";
     amountOfComments.innerText = totalComments + commentsOrComment;
