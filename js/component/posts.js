@@ -34,7 +34,6 @@ export async function renderAllPosts() {
         title.innerText = post.title;
         body.innerText = post.body.slice(0, 60) + "..."
         postedBy.innerHTML = `<a href="/users?id=${post.userId}">Posted by ${user.username}</a>`;
-        postedBy.addEventListener("click", () => { console.log("Placeholder") })
 
         for (let t of post.tags) {
             const tag = document.createElement("button");
