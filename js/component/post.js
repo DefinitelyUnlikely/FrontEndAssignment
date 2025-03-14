@@ -113,6 +113,20 @@ export async function renderSinglePost(postId, post = null, showComments = false
     leftBottom.append(dislikes);
     rightBottom.append(addComment);
 
+    // Add logic for like and dislike button
+    likes.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        likes.classList.toggle("button-clicked-up")
+        dislikes.classList.remove("button-clicked-down")
+    })
+    dislikes.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        dislikes.classList.toggle("button-clicked-down")
+        likes.classList.remove("button-clicked-up")
+    })
+
     // Add logic for comment button: 
     addComment.addEventListener("click", () => {
         renderPostCommentBox(singlePostRender, post)
