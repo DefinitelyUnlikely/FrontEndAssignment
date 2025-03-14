@@ -35,7 +35,7 @@ export async function getSingleUser(userId, alwaysUpdate = false) {
     } else {
         let users = getLocalUserData();
 
-        if (users.length == 0) {
+        if (!users) {
             user = await fetchSingleUser(userId);
             saveLocalUserData(user, true);
         }

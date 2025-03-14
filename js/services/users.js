@@ -16,7 +16,7 @@ export function getLocalUserData() {
 export function saveLocalUserData(users, single = false) {
     try {
         if (single) {
-            let localUsers = getLocalUserData();
+            let localUsers = getLocalUserData() ? getLocalUserData() : [];
             localUsers.unshift(users);
             localStorage.setItem("users", JSON.stringify(localUsers));
             return;
