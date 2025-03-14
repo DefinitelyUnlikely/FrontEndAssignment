@@ -1,1 +1,1 @@
-export function dislikePost() { }
+export function dislikePost(postId) { }
