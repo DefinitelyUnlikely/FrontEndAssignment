@@ -10,7 +10,7 @@ export async function getAllComments(alwaysUpdate = false) {
 
     let comments = getAllLocalComments();
 
-    if (comments.length == 0) {
+    if (!comments) {
         comments = await fetchAllComments();
         saveLocalCommentData(comments);
     }
@@ -31,7 +31,7 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
 
     let comments = getLocalCommentsByPost(postId);
 
-    if (comments.length == 0) {
+    if (!comments) {
         comments = await fetchCommentsByPost(postId);
         saveLocalCommentData(comments, postId);
     }

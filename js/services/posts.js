@@ -17,7 +17,7 @@ export function saveLocalPostData(posts, single = false) {
     try {
         if (single) {
             let localPosts = getLocalPostData();
-            localPosts.posts.unshift(posts);
+            localPosts.unshift(posts);
             localStorage.setItem("posts", JSON.stringify(localPosts));
             return;
         }

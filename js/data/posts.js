@@ -15,7 +15,7 @@ export async function getAllPosts(alwaysUpdate = false) {
 
     let posts = getLocalPostData();
 
-    if (posts.length == 0) {
+    if (!posts) {
         posts = await fetchAllPosts();
         saveLocalPostData(posts);
     }
@@ -36,7 +36,7 @@ export async function getSinglePost(postId, alwaysUpdate = false) {
 
     let posts = getLocalPostData();
 
-    if (posts.length == 0) {
+    if (!posts) {
         let post = await fetchSinglePost(postId);
         saveLocalPostData(post, true);
         return post;
