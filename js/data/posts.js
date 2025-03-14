@@ -20,7 +20,6 @@ export async function getAllPosts(alwaysUpdate = false) {
         saveLocalPostData(posts);
     }
 
-
     return posts;
 }
 
