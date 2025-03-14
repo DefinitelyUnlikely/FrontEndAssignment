@@ -31,6 +31,8 @@ export function saveLocalCommentData(comments, postId = null, single = false) {
 
         if (single) {
             let localComments = getLocalCommentsByPost(postId) ? getLocalCommentsByPost() : [];
+            // localComments (and most likely the same for posts/users) is null here.
+            // we need to try and fix this.
             localComments.push(comments);
             localStorage.setItem("comments/" + postId, JSON.stringify(localComments));
             return;
