@@ -2,8 +2,8 @@ import { getSinglePost } from "../data/posts.js";
 import { getSingleUser } from "../data/users.js";
 import { getCommentsByPost } from "../data/comments.js";
 import { renderPostCommentBox } from "./createComment.js";
-import { likeComment, likePost } from "../services/likes.js";
-import { dislikePost } from "../services/dislikes.js";
+import { changeCommentLikes, changePostLikes } from "../services/likes.js";
+import { changePostDislikes } from "../services/dislikes.js";
 
 
 /**
@@ -121,13 +121,13 @@ export async function renderSinglePost(postId, post = null, showComments = false
         event.stopPropagation();
         likes.classList.toggle("button-clicked-up")
         dislikes.classList.remove("button-clicked-down")
-        likePost(postId);
+
     })
     dislikes.addEventListener("click", (event) => {
         event.stopPropagation();
         dislikes.classList.toggle("button-clicked-down")
         likes.classList.remove("button-clicked-up")
-        dislikePost(postId);
+
     })
 
     // Add logic for comment button: 

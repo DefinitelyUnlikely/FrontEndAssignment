@@ -1,7 +1,7 @@
 import { getCommentsByPost } from "../data/comments.js";
 import { renderSinglePost } from "./post.js";
-import { likePost } from "../services/likes.js";
-import { dislikePost } from "../services/dislikes.js";
+import { changePostLikes } from "../services/likes.js";
+import { changePostDislikes } from "../services/dislikes.js";
 
 
 
