@@ -30,3 +30,19 @@ export function storeUserDislikesPerPost(userId, postId) {
     dislikes.push(userId);
     localStorage.setItem("dislieks/post/" + postId, JSON.stringify(dislikes));
 }
+
+/**
+ * A function that stores which users have liked a certain comment, in localStorage, at likes/comment/id of comment.
+ */
+export function storeUserLikesPerComment(userId, commentId) {
+    let likes = localStorage.getItem("likes/comment/" + commentId);
+
+    if (!likes) {
+        likes = [];
+    } else {
+        likes = JSON.parse(likes);
+    }
+
+    likes.push(userId);
+    localStorage.setItem("likes/comment/" + commentId, JSON.stringify(likes));
+}
