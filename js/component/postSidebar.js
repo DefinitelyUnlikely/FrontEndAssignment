@@ -1,11 +1,15 @@
 import { getCommentsByPost } from "../data/comments.js";
 import { renderSinglePost } from "./post.js";
-import { changePostLikes } from "../services/likes.js";
-import { changePostDislikes } from "../services/dislikes.js";
+import { changePostLikes, getUserPostLike } from "../services/likes.js";
+import { changePostDislikes, getUserPostDislike } from "../services/dislikes.js";
+import { getCurrentlySelectedUser } from "../constants.js";
+import { getSinglePost } from "../data/posts.js";
 
 
 
 export async function hiddenPostSidebar(post) {
+    let user = getCurrentlySelectedUser();
+
     const sidebar = document.createElement("div")
     sidebar.setAttribute("id", "hidden-sidebar");
 
@@ -23,26 +27,43 @@ export async function hiddenPostSidebar(post) {
     sidebar.append(downvote);
     sidebar.append(share);
 
-    upvote.innerText = post.reactions.likes + (post.reactions.likes == 1 ? " Like" : " Likes")
-    downvote.innerText = post.reactions.dislikes + (post.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
-    share.innerHTML = "Share";
-    let totalComments = (await getCommentsByPost(post.id)).length;
-    if (!totalComments) totalComments = 0;
-    let commentsOrComment = totalComments != 1 ? " comments" : " comment";
-    amountOfComments.innerText = totalComments + commentsOrComment;
+    const renderInnerText = async () => {
+        let postInfo = await getSinglePost(post.id);
+        upvote.innerText = postInfo.reactions.likes + (postInfo.reactions.likes == 1 ? " Like" : " Likes")
+        downvote.innerText = postInfo.reactions.dislikes + (postInfo.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
+        share.innerHTML = "Share";
+        let totalComments = (await getCommentsByPost(post.id)).length;
+        if (!totalComments) totalComments = 0;
+        let commentsOrComment = totalComments != 1 ? " comments" : " comment";
+        amountOfComments.innerText = totalComments + commentsOrComment;
+
+
+        if (user) {
+            let liked = getUserPostLike(post.id, user.id);
+            let disliked = getUserPostDislike(post.id, user.id);
+
+            if (liked) {
+                upvote.classList.add("clicked-up");
+            }
+
+            if (disliked) {
+                downvote.classList.add("clicked-down");
+            }
+        }
+    }
+
+    renderInnerText();
 
     // Event listeners
-    upvote.addEventListener("click", (event) => {
+    upvote.addEventListener("click", async (event) => {
         event.stopPropagation();
-        downvote.classList.remove("clicked-down");
-        upvote.classList.toggle("clicked-up");
-        changePostLikes(post.id);
+        await changePostLikes(post.id);
+        await renderInnerText();
     });
-    downvote.addEventListener("click", (event) => {
+    downvote.addEventListener("click", async (event) => {
         event.stopPropagation();
-        upvote.classList.remove("clicked-up");
-        downvote.classList.toggle("clicked-down");
-        changePostDislikes(post.id);
+        await changePostDislikes(post.id);
+        await renderInnerText();
     });
 
     share.addEventListener("click", () => { console.log(post) });
