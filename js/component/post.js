@@ -46,6 +46,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     document.body.append(singlePostRender);
 
     const renderComments = async () => {
+        commentArea.innerHTML = "";
         let comments = await getCommentsByPost(postId);
 
         for (let comment of comments) {
@@ -72,6 +73,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
             commentLikes.addEventListener("click", async (event) => {
                 event.stopPropagation();
                 await changeCommentLikes(postId, comment.id);
+                await renderComments();
             })
 
             singleComment.append(commentPostedBy);
@@ -154,7 +156,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
         }
     }
 
-    renderButtonText();
+    await renderButtonText();
 
     leftBottom.append(likes);
     leftBottom.append(dislikes);
