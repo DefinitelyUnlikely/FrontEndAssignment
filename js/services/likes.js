@@ -3,6 +3,7 @@ import { getCommentsByPost } from "../data/comments.js";
 import { getSinglePost } from "../data/posts.js";
 import { getUserPostDislike } from "./dislikes.js";
 import { saveLocalPostData } from "./posts.js";
+import { saveLocalCommentData } from "./comments.js";
 
 
 
@@ -41,11 +42,30 @@ export async function changePostLikes(postId) {
 }
 
 export async function changeCommentLikes(postId, commentId) {
+    let user = getCurrentlySelectedUser();
     let comments = await getCommentsByPost(postId);
 
-    for (let comment of comments) {
-        if (commentId == comment.id) {
+    if (!user) {
+        console.log("Please log in to react to a comment");
+        return;
+    }
 
+    let liked = getUserCommentLike(commentId, user.id);
+
+    for (let comment of comments) {
+
+        if (commentId == comment.id) {
+            if (!liked) {
+                comment.likes += 1;
+                localStorage.setItem(`likes/comments/${commentId}/${user.id}`, "true")
+            }
+            if (liked) {
+                comment.likes -= 1;
+                localStorage.removeItem(`likes/comments/${commentId}/${user.id}`)
+            }
+
+            saveLocalCommentData(comment, postId, true);
+            return;
         }
     }
 

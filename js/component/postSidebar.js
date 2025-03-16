@@ -42,6 +42,14 @@ export async function hiddenPostSidebar(post) {
             let liked = getUserPostLike(post.id, user.id);
             let disliked = getUserPostDislike(post.id, user.id);
 
+            if (!liked) {
+                upvote.classList.remove("clicked-up");
+            }
+
+            if (!disliked) {
+                downvote.classList.remove("clicked-down");
+            }
+
             if (liked) {
                 upvote.classList.add("clicked-up");
                 downvote.classList.remove("clicked-down");
@@ -54,7 +62,7 @@ export async function hiddenPostSidebar(post) {
         }
     }
 
-    renderInnerText();
+    await renderInnerText();
 
     // Event listeners
     upvote.addEventListener("click", async (event) => {

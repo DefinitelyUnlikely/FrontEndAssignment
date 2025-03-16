@@ -33,7 +33,7 @@ export function saveLocalCommentData(comments, postId = null, single = false) {
             let localComments = getLocalCommentsByPost(postId) ? getLocalCommentsByPost(postId) : [];
 
             for (let i = 0; i < localComments.length; i++) {
-                if (localComments[i] == comments.id) {
+                if (localComments[i].id == comments.id) {
                     localComments[i] = comments;
                     localStorage.setItem("comments/" + postId, JSON.stringify(localComments));
                     return;
@@ -44,7 +44,9 @@ export function saveLocalCommentData(comments, postId = null, single = false) {
             localStorage.setItem("comments/" + postId, JSON.stringify(localComments));
             return;
         }
+
         localStorage.setItem("comments/" + postId, JSON.stringify(comments));
+
     } catch (e) {
         throw new Error("Could not save comment data: " + e.Error);
     }

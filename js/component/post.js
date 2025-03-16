@@ -5,6 +5,7 @@ import { renderPostCommentBox } from "./createComment.js";
 import { changeCommentLikes, changePostLikes, getUserPostLike } from "../services/likes.js";
 import { changePostDislikes, getUserPostDislike } from "../services/dislikes.js";
 import { getCurrentlySelectedUser } from "../constants.js";
+import { getUserCommentLike } from "../services/likes.js";
 
 
 /**
@@ -60,10 +61,17 @@ export async function renderSinglePost(postId, post = null, showComments = false
             commentPostedBy.innerText = (await getSingleUser(comment.user.id)).username;
             commentBody.innerText = comment.body;
             commentLikes.innerText = comment.likes + (comment.likes == 1 ? " Like" : " Likes");
-
             commentLikes.classList.add("comment-likes")
 
-            commentLikes.addEventListener("click", () => { })
+            let liked = getUserCommentLike(comment.id, user.id)
+            if (liked) {
+                commentLikes.classList.add("liked-comment");
+            }
+
+            commentLikes.addEventListener("click", async (event) => {
+                event.stopPropagation();
+                await changeCommentLikes(postId, comment.id);
+            })
 
             singleComment.append(commentPostedBy);
             singleComment.append(lineOne);
@@ -123,6 +131,14 @@ export async function renderSinglePost(postId, post = null, showComments = false
         if (user) {
             let liked = getUserPostLike(post.id, user.id);
             let disliked = getUserPostDislike(post.id, user.id);
+
+            if (!liked) {
+                likes.classList.remove("button-clicked-up");
+            }
+
+            if (!disliked) {
+                dislikes.classList.remove("button-clicked-down");
+            }
 
             if (liked) {
                 likes.classList.add("button-clicked-up");

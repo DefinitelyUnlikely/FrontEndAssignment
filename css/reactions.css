@@ -20,4 +20,9 @@
 
 .comment-likes:active {
     color: orangered;
+    background-color: rgb(19, 19, 19);
+}
+
+.liked-comment {
+    color: orangered;
 }
