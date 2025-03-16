@@ -36,14 +36,16 @@ export async function hiddenPostSidebar(post) {
         event.stopPropagation();
         downvote.classList.remove("clicked-down");
         upvote.classList.toggle("clicked-up");
+        changePostLikes(post.id);
     });
     downvote.addEventListener("click", (event) => {
         event.stopPropagation();
         upvote.classList.remove("clicked-up");
         downvote.classList.toggle("clicked-down");
+        changePostDislikes(post.id);
     });
 
-    share.addEventListener("click", () => { });
+    share.addEventListener("click", () => { console.log(post) });
 
     amountOfComments.addEventListener("click", (event) => {
         event.stopPropagation();

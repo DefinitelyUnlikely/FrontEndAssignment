@@ -18,11 +18,9 @@ export function saveLocalPostData(posts, single = false) {
         if (single) {
             let localPosts = getLocalPostData() ? getLocalPostData() : [];
 
-            // Check if the post id already exists in the array, if so
-            // we need to exchange them rather than add the post to the array. 
-            for (let post of localPosts) {
-                if (posts.id == post.id) {
-                    post = posts;
+            for (let i = 0; i < localPosts.length; i++) {
+                if (posts.id == localPosts[i].id) {
+                    localPosts[i] = posts;
                     localStorage.setItem("posts", JSON.stringify(localPosts));
                     return;
                 }

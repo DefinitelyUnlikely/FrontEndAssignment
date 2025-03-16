@@ -1,8 +1,11 @@
 import { getSinglePost } from "../data/posts.js";
+import { getUserPostLike } from "./likes.js";
+import { getCurrentlySelectedUser } from "../constants.js";
+import { saveLocalPostData } from "./posts.js";
 
 export async function changePostDislikes(postId) {
     let user = getCurrentlySelectedUser();
-    let post = getSinglePost(postId);
+    let post = await getSinglePost(postId);
 
     if (!user) {
         console.log("Please log in");
@@ -14,19 +17,22 @@ export async function changePostDislikes(postId) {
 
     if (!dislike && !like) {
         post.reactions.dislikes += 1;
+        saveLocalPostData(post, true);
         localStorage.setItem(`dislikes/posts/${postId}/${user.id}`, "true")
         return;
     }
 
     if (!dislike && like) {
-        // Need to save updated reactions to localStorage.
         post.reactions.likes -= 1;
         post.reactions.dislikes += 1;
+        saveLocalPostData(post, true);
+        localStorage.setItem(`dislikes/posts/${postId}/${user.id}`, "true")
         localStorage.removeItem(`likes/posts/${postId}/${user.id}`)
         return;
     }
 
     post.reactions.dislikes -= 1;
+    saveLocalPostData(post, true);
     localStorage.removeItem(`dislikes/posts/${postId}/${user.id}`)
 }
 
