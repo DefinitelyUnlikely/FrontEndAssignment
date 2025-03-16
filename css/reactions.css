@@ -1,0 +1,28 @@
+.clicked-up {
+    color: orangered;
+}
+
+.clicked-down {
+    color: rgb(0, 0, 200)
+}
+
+.button-clicked-up {
+    background-color: orangered !important;
+}
+
+.button-clicked-down {
+    background-color: rgb(0, 0, 200) !important;
+}
+
+.comment-likes:hover {
+    cursor: pointer;
+}
+
+.comment-likes:active {
+    color: orangered;
+    background-color: rgb(19, 19, 19);
+}
+
+.liked-comment {
+    color: orangered;
+}

@@ -2,6 +2,12 @@ import { getSinglePost } from "../data/posts.js";
 import { getSingleUser } from "../data/users.js";
 import { getCommentsByPost } from "../data/comments.js";
 import { renderPostCommentBox } from "./createComment.js";
+import { changeCommentLikes, changePostLikes, getUserPostLike } from "../services/likes.js";
+import { changePostDislikes, getUserPostDislike } from "../services/dislikes.js";
+import { getCurrentlySelectedUser } from "../constants.js";
+import { getUserCommentLike } from "../services/likes.js";
+import { renderAllPosts } from "./posts.js";
+
 
 /**
  * Render single post as a overlay window.
@@ -11,6 +17,7 @@ import { renderPostCommentBox } from "./createComment.js";
  * Otherwise, add a show comment clickable paragraph.
  */
 export async function renderSinglePost(postId, post = null, showComments = false) {
+    let user = getCurrentlySelectedUser();
 
     if (post == null) {
         post = await getSinglePost(postId);
@@ -39,6 +46,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
     document.body.append(singlePostRender);
 
     const renderComments = async () => {
+        commentArea.innerHTML = "";
         let comments = await getCommentsByPost(postId);
 
         for (let comment of comments) {
@@ -55,6 +63,18 @@ export async function renderSinglePost(postId, post = null, showComments = false
             commentPostedBy.innerText = (await getSingleUser(comment.user.id)).username;
             commentBody.innerText = comment.body;
             commentLikes.innerText = comment.likes + (comment.likes == 1 ? " Like" : " Likes");
+            commentLikes.classList.add("comment-likes")
+
+            let liked = getUserCommentLike(comment.id, user.id)
+            if (liked) {
+                commentLikes.classList.add("liked-comment");
+            }
+
+            commentLikes.addEventListener("click", async (event) => {
+                event.stopPropagation();
+                await changeCommentLikes(postId, comment.id);
+                await renderComments();
+            })
 
             singleComment.append(commentPostedBy);
             singleComment.append(lineOne);
@@ -70,6 +90,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
         event.stopPropagation();
         singlePostRender.remove();
         document.body.removeEventListener("click", removeSinglePost);
+        renderAllPosts();
     }
     document.body.addEventListener("click", removeSinglePost);
 
@@ -105,13 +126,53 @@ export async function renderSinglePost(postId, post = null, showComments = false
     const dislikes = document.createElement("button");
     const addComment = document.createElement("button");
 
-    likes.innerText = post.reactions.likes + (post.reactions.likes == 1 ? " Like" : " Likes")
-    dislikes.innerText = (post.reactions).dislikes + (post.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
-    addComment.innerText = "Comment"
+    const renderButtonText = async () => {
+        let postInfo = await getSinglePost(post.id);
+        likes.innerText = postInfo.reactions.likes + (postInfo.reactions.likes == 1 ? " Like" : " Likes")
+        dislikes.innerText = postInfo.reactions.dislikes + (postInfo.reactions.dislikes == 1 ? " Dislike" : " Dislikes")
+        addComment.innerText = "Comment"
+
+        if (user) {
+            let liked = getUserPostLike(post.id, user.id);
+            let disliked = getUserPostDislike(post.id, user.id);
+
+            if (!liked) {
+                likes.classList.remove("button-clicked-up");
+            }
+
+            if (!disliked) {
+                dislikes.classList.remove("button-clicked-down");
+            }
+
+            if (liked) {
+                likes.classList.add("button-clicked-up");
+                dislikes.classList.remove("button-clicked-down");
+            }
+
+            if (disliked) {
+                dislikes.classList.add("button-clicked-down");
+                likes.classList.remove("button-clicked-up");
+            }
+        }
+    }
+
+    await renderButtonText();
 
     leftBottom.append(likes);
     leftBottom.append(dislikes);
     rightBottom.append(addComment);
+
+    // Add logic for like and dislike button
+    likes.addEventListener("click", async (event) => {
+        event.stopPropagation();
+        await changePostLikes(post.id);
+        await renderButtonText();
+    })
+    dislikes.addEventListener("click", async (event) => {
+        event.stopPropagation();
+        await changePostDislikes(post.id);
+        await renderButtonText();
+    })
 
     // Add logic for comment button: 
     addComment.addEventListener("click", () => {

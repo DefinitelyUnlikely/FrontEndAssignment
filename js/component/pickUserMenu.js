@@ -1,6 +1,7 @@
 import { getAllUsers, getUsersPagination } from "../data/users.js";
 import { scrollIndicators } from "./scrollIndiciators.js";
 import { updateCurrentSelectedUser } from "../constants.js";
+import { renderAllPosts } from "./posts.js";
 
 export async function pickUserMenu() {
 
@@ -47,6 +48,7 @@ export async function pickUserMenu() {
 
             userSpan.addEventListener("click", () => {
                 updateCurrentSelectedUser(user);
+                renderAllPosts();
                 pickUserModal.remove();
                 pickUserWindow.remove();
             })
