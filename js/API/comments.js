@@ -1,3 +1,7 @@
+/**
+ * 
+ * @returns all comments available to the API
+ */
 export async function fetchAllComments() {
     let response = await fetch('https://dummyjson.com/comments')
 
