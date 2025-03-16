@@ -6,6 +6,7 @@ import { changeCommentLikes, changePostLikes, getUserPostLike } from "../service
 import { changePostDislikes, getUserPostDislike } from "../services/dislikes.js";
 import { getCurrentlySelectedUser } from "../constants.js";
 import { getUserCommentLike } from "../services/likes.js";
+import { renderAllPosts } from "./posts.js";
 
 
 /**
@@ -87,6 +88,7 @@ export async function renderSinglePost(postId, post = null, showComments = false
         event.stopPropagation();
         singlePostRender.remove();
         document.body.removeEventListener("click", removeSinglePost);
+        renderAllPosts();
     }
     document.body.addEventListener("click", removeSinglePost);
 
