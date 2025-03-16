@@ -32,9 +32,9 @@ export function saveLocalCommentData(comments, postId = null, single = false) {
         if (single) {
             let localComments = getLocalCommentsByPost(postId) ? getLocalCommentsByPost(postId) : [];
 
-            for (let comment of localComments) {
-                if (comment.id == comments.id) {
-                    comment = comments;
+            for (let i = 0; i < localComments.length; i++) {
+                if (localComments[i] == comments.id) {
+                    localComments[i] = comments;
                     localStorage.setItem("comments/" + postId, JSON.stringify(localComments));
                     return;
                 }

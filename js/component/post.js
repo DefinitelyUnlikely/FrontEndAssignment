@@ -61,6 +61,10 @@ export async function renderSinglePost(postId, post = null, showComments = false
             commentBody.innerText = comment.body;
             commentLikes.innerText = comment.likes + (comment.likes == 1 ? " Like" : " Likes");
 
+            commentLikes.classList.add("comment-likes")
+
+            commentLikes.addEventListener("click", () => { })
+
             singleComment.append(commentPostedBy);
             singleComment.append(lineOne);
             singleComment.append(commentBody);

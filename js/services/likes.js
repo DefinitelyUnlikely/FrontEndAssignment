@@ -43,6 +43,12 @@ export async function changePostLikes(postId) {
 export async function changeCommentLikes(postId, commentId) {
     let comments = await getCommentsByPost(postId);
 
+    for (let comment of comments) {
+        if (commentId == comment.id) {
+
+        }
+    }
+
 }
 
 
