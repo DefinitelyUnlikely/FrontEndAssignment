@@ -16,6 +16,7 @@ async function popular() {
 
     hamburgerMenu();
     OffScreenMenu();
+    searchBar();
     createPostButton();
     renderPosts(popularPosts);
 }

@@ -3,16 +3,23 @@ import { renderPosts } from "./posts.js";
 
 
 
-export async function searchBar() {
-    const searchBar = document.querySelector("nav-search");
+export function searchBar() {
+    let searchBarInput = document.querySelector("#nav-search-input");
+
+    searchBarInput.addEventListener("keydown", async (event) => {
+        if (event.key === "Enter" || event.keyCode === 13) {
+            await searchPosts();
+        }
+    })
+
 }
 
-export async function searchPosts() {
-    let searchBarInput = document.querySelector("nav-search-input");
+async function searchPosts() {
+    let searchBarInput = document.querySelector("#nav-search-input");
     let posts = await getAllPosts();
     let matchingPosts = [];
 
-    for (let post in posts) {
+    for (let post of posts) {
         let body = post.body;
         let title = post.title;
 
