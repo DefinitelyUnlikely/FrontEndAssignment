@@ -3,14 +3,10 @@ import { getSingleUser } from "../data/users.js";
 import { hiddenPostSidebar } from "./postSidebar.js";
 import { renderSinglePost } from "./post.js";
 
-export async function renderAllPosts() {
+export async function renderPosts(postArray) {
     // Function to render posts on the main pages
     const postArea = document.getElementsByClassName("post-area")[0]
     postArea.innerHTML = "";
-
-    // Fetch Dummy data from dummyJSON.com.
-    // ATM we do not get all posts, but limits it to 20. 
-    let postArray = await getAllPosts();
 
     for (let post of postArray) {
         const postAndSidebar = document.createElement("div");

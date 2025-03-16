@@ -1,7 +1,8 @@
 import { getAllUsers, getUsersPagination } from "../data/users.js";
 import { scrollIndicators } from "./scrollIndiciators.js";
 import { updateCurrentSelectedUser } from "../constants.js";
-import { renderAllPosts } from "./posts.js";
+import { renderPosts } from "./posts.js";
+import { getAllPosts } from "../data/posts.js";
 
 export async function pickUserMenu() {
 
@@ -36,7 +37,7 @@ export async function pickUserMenu() {
     nextPage.innerText = "Next >"
     lastPage.innerText = "< Last"
 
-    function renderUsers(users) {
+    async function renderUsers(users) {
         usersDiv.innerHTML = "";
         for (let user of users) {
             const userPara = document.createElement("p");
@@ -46,16 +47,16 @@ export async function pickUserMenu() {
             userPara.appendChild(userSpan);
             usersDiv.append(userPara);
 
-            userSpan.addEventListener("click", () => {
+            userSpan.addEventListener("click", async () => {
                 updateCurrentSelectedUser(user);
-                renderAllPosts();
+                renderPosts(await getAllPosts());
                 pickUserModal.remove();
                 pickUserWindow.remove();
             })
         }
     }
 
-    renderUsers(usersJSON.users);
+    await renderUsers(usersJSON.users);
 
     pickUserWindow.addEventListener("click", (event) => event.stopPropagation());
 
@@ -70,7 +71,7 @@ export async function pickUserMenu() {
 
     nextPage.addEventListener("click", async () => {
         lastPageSkip += 25;
-        renderUsers((await getUsersPagination(25, lastPageSkip)).users);
+        await renderUsers((await getUsersPagination(25, lastPageSkip)).users);
     });
 
     lastPage.addEventListener("click", async () => {
@@ -78,7 +79,7 @@ export async function pickUserMenu() {
             return;
         }
         lastPageSkip -= 25;
-        renderUsers((await getUsersPagination(25, lastPageSkip)).users);
+        await renderUsers((await getUsersPagination(25, lastPageSkip)).users);
     });
 
 }

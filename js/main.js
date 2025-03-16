@@ -1,13 +1,14 @@
-import { renderAllPosts } from "./component/posts.js";
+import { renderPosts } from "./component/posts.js";
 import { hamburgerMenu } from "./component/hamburger.js"
 import { createPostButton } from "./component/createPost.js";
 import { OffScreenMenu } from "./component/offscreenmenu.js";
+import { getAllPosts } from "./data/posts.js";
 
-function main() {
+async function main() {
     hamburgerMenu();
     OffScreenMenu();
     createPostButton();
-    renderAllPosts();
+    renderPosts(await getAllPosts());
 }
 
 main();

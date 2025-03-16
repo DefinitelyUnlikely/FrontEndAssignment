@@ -1,7 +1,7 @@
 import { getAllPostTagsList, getAllPosts } from "../data/posts.js";
 import { getLocalPostData, saveLocalPostData } from "../services/posts.js";
 import { getCurrentlySelectedUser, getNewPostId } from "../constants.js"
-import { renderAllPosts } from "./posts.js";
+import { renderPosts } from "./posts.js";
 
 export async function createPostButton() {
     const createButton = document.getElementById("create-post");
@@ -119,7 +119,7 @@ export async function renderCreatePostArea() {
         }
 
         saveLocalPostData(post, true);
-        renderAllPosts();
+        renderPosts(await getAllPosts());
         createArea.classList.add("hidden");
         createArea.classList.remove("unhidden-flex");
         createArea.innerHTML = "";

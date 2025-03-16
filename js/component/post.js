@@ -1,4 +1,4 @@
-import { getSinglePost } from "../data/posts.js";
+import { getAllPosts, getSinglePost } from "../data/posts.js";
 import { getSingleUser } from "../data/users.js";
 import { getCommentsByPost } from "../data/comments.js";
 import { renderPostCommentBox } from "./createComment.js";
@@ -6,7 +6,7 @@ import { changeCommentLikes, changePostLikes, getUserPostLike } from "../service
 import { changePostDislikes, getUserPostDislike } from "../services/dislikes.js";
 import { getCurrentlySelectedUser } from "../constants.js";
 import { getUserCommentLike } from "../services/likes.js";
-import { renderAllPosts } from "./posts.js";
+import { renderPosts } from "./posts.js";
 
 
 /**
@@ -86,11 +86,11 @@ export async function renderSinglePost(postId, post = null, showComments = false
 
     singlePostRender.addEventListener("click", (event) => event.stopPropagation());
 
-    function removeSinglePost(event) {
+    async function removeSinglePost(event) {
         event.stopPropagation();
         singlePostRender.remove();
         document.body.removeEventListener("click", removeSinglePost);
-        renderAllPosts();
+        renderPosts(await getAllPosts());
     }
     document.body.addEventListener("click", removeSinglePost);
 

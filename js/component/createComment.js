@@ -1,7 +1,8 @@
 import { getCurrentlySelectedUser, getNewCommentId } from "../constants.js";
+import { getAllPosts } from "../data/posts.js";
 import { saveLocalCommentData } from "../services/comments.js";
 import { renderSinglePost } from "./post.js";
-import { renderAllPosts } from "./posts.js";
+import { renderPosts } from "./posts.js";
 
 export async function renderPostCommentBox(appendTo, post) {
     const commentLabel = document.createElement("label");
@@ -53,6 +54,6 @@ export async function submitComment(post, text) {
 
     saveLocalCommentData(comment, post.id, true);
     renderSinglePost(post.id, post, true);
-    renderAllPosts();
+    renderPosts(await getAllPosts());
 
 }
