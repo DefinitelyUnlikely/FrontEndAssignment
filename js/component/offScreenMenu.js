@@ -13,5 +13,5 @@ export function OffScreenMenu() {
     }
 
     changeUser.addEventListener("click", () => { pickUserMenu(); });
-    logout.addEventListener("click", () => { updateCurrentSelectedUser(null) })
+    logout.addEventListener("click", () => { updateCurrentSelectedUser(null) });
 }
