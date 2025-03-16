@@ -44,10 +44,12 @@ export async function hiddenPostSidebar(post) {
 
             if (liked) {
                 upvote.classList.add("clicked-up");
+                downvote.classList.remove("clicked-down");
             }
 
             if (disliked) {
                 downvote.classList.add("clicked-down");
+                upvote.classList.remove("clicked-up");
             }
         }
     }
