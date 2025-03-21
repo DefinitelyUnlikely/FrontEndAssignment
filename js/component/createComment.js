@@ -1,6 +1,7 @@
 import { getCurrentlySelectedUser, getNewCommentId } from "../constants.js";
 import { getAllPosts } from "../data/posts.js";
 import { saveLocalCommentData } from "../services/comments.js";
+import { changeCommentLikes } from "../services/likes.js";
 import { renderSinglePost } from "./post.js";
 import { renderPosts } from "./posts.js";
 
@@ -44,7 +45,7 @@ export async function submitComment(post, text) {
         "id": nid,
         "body": text,
         "postId": post.id,
-        "likes": 1, // Assume user likes their own comment
+        "likes": 0,
         "user": {
             "id": user.id,
             "username": user.username,
@@ -52,7 +53,10 @@ export async function submitComment(post, text) {
         }
     }
 
+    // Let's assume users like their own post
+
     saveLocalCommentData(comment, post.id, true);
+    await changeCommentLikes(post.id, nid)
     renderSinglePost(post.id, post, true);
     renderPosts(await getAllPosts());
 
