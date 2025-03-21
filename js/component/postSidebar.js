@@ -76,6 +76,7 @@ export async function hiddenPostSidebar(post) {
         await renderInnerText();
     });
 
+    // Make share a debug button, as we are simply doing local work and sharing is in this case not caring.
     share.addEventListener("click", () => { console.log(post) });
 
     amountOfComments.addEventListener("click", (event) => {
