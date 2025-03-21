@@ -44,7 +44,7 @@ export async function submitComment(post, text) {
         "id": nid,
         "body": text,
         "postId": post.id,
-        "likes": 0,
+        "likes": 1, // Assume user likes their own comment
         "user": {
             "id": user.id,
             "username": user.username,

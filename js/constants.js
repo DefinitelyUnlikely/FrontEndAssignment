@@ -38,6 +38,5 @@ export async function getNewPostId() {
 }
 
 export async function getNewCommentId() {
-    let comments = await getAllComments();
-    return (Number("12345" + comments.length));
+    return (Number("12345" + Date.now()));
 }
