@@ -1,4 +1,4 @@
-import { fetchCommentsByPost, fetchSingleComment, fetchAllComments } from "../API/comments.js";
+import { fetchCommentsByPost, fetchAllComments } from "../API/comments.js";
 import { getAllLocalComments, getLocalCommentsByPost, saveLocalCommentData } from "../services/comments.js";
 
 
@@ -35,18 +35,4 @@ export async function getCommentsByPost(postId, alwaysUpdate = false) {
     }
 
     return comments;
-}
-
-/**
- * get a single comment, by its id.
- * @param {number} commentId - id of the post to get. 
- * @param {boolean} alwaysUpdate - set to true to always fetch data from the API instead of using localStorage.
- * @returns 
- */
-export async function getSingleComment(commentId, alwaysUpdate = false) {
-    if (alwaysUpdate) {
-        return await fetchSingleComment(commentId);
-    }
-
-    return await fetchSingleComment(commentId);
 }

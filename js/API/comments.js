@@ -25,12 +25,3 @@ export async function fetchCommentsByPost(postId) {
 
     return response.json().then(response => response.comments)
 }
-
-/**
- * get a single comment, by its id.
- * @param {number} commentId - id of the post to get. 
- * @returns 
- */
-export async function fetchSingleComment(commentId) {
-    return (await fetch('https://dummyjson.com/comments/' + commentId)).json()
-}
